@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "webpack",
+    "transpile": "webpack",
     "vercel-dev": "vercel dev"
   },
   "dependencies": {
