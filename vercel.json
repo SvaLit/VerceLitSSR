@@ -10,8 +10,5 @@
       "source": "/(.*)",
       "destination": "/api/index.js"
     }
-  ],
-  "github": {
-    "silent": true
-  }
+  ]
 }
