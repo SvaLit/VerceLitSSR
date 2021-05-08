@@ -7,7 +7,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'api'),
         filename: 'index.js',
-        libraryTarget: 'module'
+        libraryTarget: 'module',
+        publicPath: './'
     },
     experiments: {
         outputModule: true,
