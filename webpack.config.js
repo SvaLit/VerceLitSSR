@@ -1,28 +1,28 @@
 const path = require("path");
+const TerserPlugin = require("terser-webpack-plugin");
 module.exports = {
     entry: './index.mjs',
     target: 'node14',
     mode: 'production',
     output: {
-        path: path.resolve(__dirname),
+        path: path.resolve(__dirname, 'api'),
         filename: 'index.js',
         libraryTarget: 'module'
     },
     experiments: {
         outputModule: true,
-    }
-    /*module: {
-        rules: [
-            {
-                test: /\.m?js$/,
-                // exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
-            }
-        ]
-    }*/
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                    format: {
+                        comments: false,
+                    },
+                },
+                extractComments: false,
+            }),
+        ],
+    },
 }
