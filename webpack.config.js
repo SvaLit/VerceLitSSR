@@ -10,6 +10,9 @@ module.exports = {
         libraryTarget: 'module',
         publicPath: './'
     },
+    resolve: {
+        preferRelative: true,
+    },
     experiments: {
         outputModule: true,
     },
