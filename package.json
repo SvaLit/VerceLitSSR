@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "vercel-build": "webpack",
+    "build": "webpack",
     "vercel-dev": "vercel dev"
   },
   "dependencies": {
