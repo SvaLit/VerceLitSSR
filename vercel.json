@@ -1,6 +1,10 @@
 {
   "builds": [
     {
+      "src": "/**",
+      "use": "@vercel/static"
+    },
+    {
       "src": "/index.js",
       "use": "@vercel/node"
     }
@@ -9,6 +13,12 @@
     {
       "source": "/(.*)",
       "destination": "/index.js"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/import.js",
+      "destination": "/import.client.js"
     }
   ],
   "github": {
