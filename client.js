@@ -1,8 +1,11 @@
-import hello from "/template.js";
-import {render} from 'lit';
-import {hydrate} from 'lit/experimental-hydrate.js';
+import 'lit/experimental-hydrate-support.js';
+import {
+    hasNativeDeclarativeShadowRoots,
+    hydrateShadowRoots
+} from '@webcomponents/template-shadowroot/template-shadowroot.js';
 
-hydrate(hello({who: 'World'}), document.body);
-const update = (text) => render(hello({who: text}), document.body);
+if (!hasNativeDeclarativeShadowRoots) {
+    hydrateShadowRoots(document.body);
+}
 
-setTimeout(() => update('Hydrate'), 1000);
+import('/app.js');
