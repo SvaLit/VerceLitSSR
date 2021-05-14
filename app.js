@@ -13,7 +13,7 @@ export class AppDemo extends LitElement {
     }
 
     firstUpdated() {
-        this.name = 'Hydrated';
+        setTimeout(() => this.name = 'Hydrated', 1000);
     }
 
     render() {
