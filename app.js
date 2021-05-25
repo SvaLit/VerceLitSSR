@@ -3,21 +3,26 @@ import {LitElement, html} from "./import.js";
 export class AppDemo extends LitElement {
     constructor() {
         super();
-        this.name = 'Default';
+        this.url = '';
+        this.hydrated = false;
     }
 
     static get properties() {
         return {
-            name: {type: String}
+            url: {type: String},
+            hydrated: {type: Boolean}
         }
     }
 
     firstUpdated() {
-        setTimeout(() => this.name = 'Hydrated', 1000);
+        setTimeout(() => {
+            this.hydrated = true;
+            this.url = location.pathname;
+        }, 1000);
     }
 
     render() {
-        return html`<p>Hello, ${this.name} !</p>`;
+        return html`<p>Path: ${this.url} ${this.hydrated ? '(Hydrated)' : ''}</p>`;
     }
 }
 

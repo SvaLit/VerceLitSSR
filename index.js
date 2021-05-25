@@ -4,9 +4,9 @@ import "./app.js";
 
 export default async (req, res) => {
     res.status(200);
-    res.write('<body>')
+    res.write(`<head><title>LitSSR</title><meta name="color-scheme" content="dark light"></head><body>`)
     const result = render(html`
-        <lit-app name="World"></lit-app>`);
+        <lit-app url="${req.url}"></lit-app>`);
     for await (const value of result) res.write(value)
     return res.end(`</body><script type="importmap">
 {
