@@ -8,4 +8,4 @@ if (!hasNativeDeclarativeShadowRoots) {
     hydrateShadowRoots(document.body);
 }
 
-import('/app.js');
+import('/components/app.js');

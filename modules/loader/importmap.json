@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "lit": "https://cdn.skypack.dev/lit/",
+    "lit/experimental-hydrate.js": "https://cdn.skypack.dev/lit/experimental-hydrate.js",
+    "lit/experimental-hydrate-support.js": "https://cdn.skypack.dev/lit/experimental-hydrate-support.js",
+    "@webcomponents/template-shadowroot/template-shadowroot.js": "https://cdn.skypack.dev/@webcomponents/template-shadowroot/template-shadowroot.js"
+  }
+}

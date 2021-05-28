@@ -17,8 +17,8 @@
   ],
   "redirects": [
     {
-      "source": "/import.js",
-      "destination": "/import.client.js"
+      "source": "/components/imports.js",
+      "destination": "/components/imports.client.js"
     }
   ],
   "github": {

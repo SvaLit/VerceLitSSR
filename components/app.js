@@ -1,4 +1,4 @@
-import {LitElement, html} from "./import.js";
+import {LitElement, html} from "./imports.js";
 
 export class AppDemo extends LitElement {
     constructor() {
