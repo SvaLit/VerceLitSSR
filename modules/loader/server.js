@@ -7,10 +7,8 @@ import "../../components/app.js";
 const head = readFileSync(resolve(__dirname, 'head.html'));
 
 export default async (req, res) => {
-    res.write(head);
+    res.write(head + `<body>`);
     for await (const chunk of render(html`
-        <body>
-        <lit-app url="${req.url}"></lit-app>
-        </body>`)) res.write(chunk);
-    return res.end();
+        <lit-app url="${req.url}"></lit-app>`)) res.write(chunk);
+    return res.end(`</body>`);
 }
