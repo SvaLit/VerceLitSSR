@@ -3,7 +3,7 @@
  * Copyright 2020 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-import { css, CSSResult } from '../css-tag.js';
+import { css, CSSResult, unsafeCSS } from '../css-tag.js';
 import { assert } from '@esm-bundle/chai';
 suite('Styling', () => {
     suite('css tag', () => {
@@ -19,6 +19,14 @@ suite('Styling', () => {
             // Alias avoids syntax highlighting issues in editors
             const cssValue = css;
             const makeStyle = () => cssValue `foo`;
+            const style1 = makeStyle();
+            assert.equal(style1.styleSheet, style1.styleSheet);
+            const style2 = makeStyle();
+            assert.equal(style1.styleSheet, style2.styleSheet);
+        });
+        test('unsafeCSS() CSSResults always produce the same stylesheet', () => {
+            // Alias avoids syntax highlighting issues in editors
+            const makeStyle = () => unsafeCSS(`foo`);
             const style1 = makeStyle();
             assert.equal(style1.styleSheet, style1.styleSheet);
             const style2 = makeStyle();

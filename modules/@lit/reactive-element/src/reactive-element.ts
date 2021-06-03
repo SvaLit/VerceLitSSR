@@ -268,7 +268,10 @@ const defaultPropertyDeclaration: PropertyDeclaration = {
  */
 const finalized = 'finalized';
 
-export type Warnings = 'change-in-update' | 'migration';
+/**
+ * A string representing one of the supported dev mode warnings classes.
+ */
+export type WarningKind = 'change-in-update' | 'migration';
 
 export type Initializer = (element: ReactiveElement) => void;
 
@@ -281,24 +284,54 @@ export type Initializer = (element: ReactiveElement) => void;
 export abstract class ReactiveElement
   extends HTMLElement
   implements ReactiveControllerHost {
-  // Note, these are patched in only in DEV_MODE.
+  // Note: these are patched in only in DEV_MODE.
   /**
+   * Read or set all the enabled warning kinds for this class.
+   *
+   * This property is only used in development builds.
+   *
    * @nocollapse
    * @category dev-mode
    */
-  static enabledWarnings?: Warnings[];
+  static enabledWarnings?: WarningKind[];
 
   /**
+   * Enable the given warning kind for this class.
+   *
+   * This method only exists in development builds, so it should be accessed
+   * with a guard like:
+   *
+   * ```ts
+   * // Enable for all ReactiveElement classes
+   * ReactiveElement.enableWarning.?('migration');
+   *
+   * // Enable for all MyElement only
+   * MyElement.enableWarning.?('migration');
+   * ```
+   *
    * @nocollapse
    * @category dev-mode
    */
-  static enableWarning?: (type: Warnings) => void;
+  static enableWarning?: (warningKind: WarningKind) => void;
 
   /**
+   * Disable the given warning kind for this class.
+   *
+   * This method only exists in development builds, so it should be accessed
+   * with a guard like:
+   *
+   * ```ts
+   * // Disable for all ReactiveElement classes
+   * ReactiveElement.disableWarning.?('migration');
+   *
+   * // Disable for all MyElement only
+   * MyElement.disableWarning.?('migration');
+   * ```
+   *
    * @nocollapse
    * @category dev-mode
    */
-  static disableWarning?: (type: Warnings) => void;
+  static disableWarning?: (warningKind: WarningKind) => void;
 
   /**
    * @nocollapse
@@ -335,7 +368,7 @@ export abstract class ReactiveElement
    * @nocollapse
    * @category properties
    */
-  static elementProperties?: PropertyDeclarationMap;
+  static elementProperties: PropertyDeclarationMap = new Map();
 
   /**
    * User-supplied object that maps property names to `PropertyDeclaration`
@@ -370,7 +403,7 @@ export abstract class ReactiveElement
    * @nocollapse
    * @category styles
    */
-  static elementStyles?: CSSResultFlatArray;
+  static elementStyles: CSSResultFlatArray = [];
 
   /**
    * Array of styles to apply to the element. The styles should be defined
@@ -391,7 +424,7 @@ export abstract class ReactiveElement
     const attributes: string[] = [];
     // Use forEach so this works even if for/of loops are compiled to for loops
     // expecting arrays
-    this.elementProperties!.forEach((v, p) => {
+    this.elementProperties.forEach((v, p) => {
       const attr = this.__attributeNameForProperty(p, v);
       if (attr !== undefined) {
         this.__attributeToPropertyMap.set(attr, p);
@@ -437,7 +470,7 @@ export abstract class ReactiveElement
     // Note, since this can be called by the `@property` decorator which
     // is called before `finalize`, we ensure finalization has been kicked off.
     this.finalize();
-    this.elementProperties!.set(name, options);
+    this.elementProperties.set(name, options);
     // Do not generate an accessor if the prototype already has one, since
     // it would be lost otherwise and that would never be the user's intention;
     // Instead, we expect users to call `requestUpdate` themselves from
@@ -517,7 +550,7 @@ export abstract class ReactiveElement
    * @category properties
    */
   protected static getPropertyOptions(name: PropertyKey) {
-    return this.elementProperties!.get(name) || defaultPropertyDeclaration;
+    return this.elementProperties.get(name) || defaultPropertyDeclaration;
   }
 
   /**
@@ -534,7 +567,7 @@ export abstract class ReactiveElement
     // finalize any superclasses
     const superCtor = Object.getPrototypeOf(this) as typeof ReactiveElement;
     superCtor.finalize();
-    this.elementProperties = new Map(superCtor.elementProperties!);
+    this.elementProperties = new Map(superCtor.elementProperties);
     // initialize Map populated in observedAttributes
     this.__attributeToPropertyMap = new Map();
     // make any properties
@@ -565,7 +598,7 @@ export abstract class ReactiveElement
           console.warn(
             `\`${name}\` is implemented. It ` +
               `has been removed from this version of ReactiveElement.` +
-              ` See the changelog at https://github.com/Polymer/lit-html/blob/main/packages/reactive-element/CHANGELOG.md`
+              ` See the changelog at https://github.com/lit/lit/blob/main/packages/reactive-element/CHANGELOG.md`
           );
         }
       };
@@ -750,7 +783,7 @@ export abstract class ReactiveElement
   private __saveInstanceProperties() {
     // Use forEach so this works even if for/of loops are compiled to for loops
     // expecting arrays
-    (this.constructor as typeof ReactiveElement).elementProperties!.forEach(
+    (this.constructor as typeof ReactiveElement).elementProperties.forEach(
       (_v, p) => {
         if (this.hasOwnProperty(p)) {
           this.__instanceProperties!.set(p, this[p as keyof this]);
@@ -777,7 +810,7 @@ export abstract class ReactiveElement
       );
     adoptStyles(
       renderRoot,
-      (this.constructor as typeof ReactiveElement).elementStyles!
+      (this.constructor as typeof ReactiveElement).elementStyles
     );
     return renderRoot;
   }
@@ -1023,7 +1056,7 @@ export abstract class ReactiveElement
       // Produce warning if any class properties are shadowed by class fields
       if (DEV_MODE) {
         const shadowedProperties: string[] = [];
-        (this.constructor as typeof ReactiveElement).elementProperties!.forEach(
+        (this.constructor as typeof ReactiveElement).elementProperties.forEach(
           (_v, p) => {
             if (this.hasOwnProperty(p) && !this.__instanceProperties?.has(p)) {
               shadowedProperties.push(p as string);
@@ -1229,7 +1262,7 @@ if (DEV_MODE) {
   };
   ReactiveElement.enableWarning = function (
     this: typeof ReactiveElement,
-    warning: Warnings
+    warning: WarningKind
   ) {
     ensureOwnWarnings(this);
     if (this.enabledWarnings!.indexOf(warning) < 0) {
@@ -1238,7 +1271,7 @@ if (DEV_MODE) {
   };
   ReactiveElement.disableWarning = function (
     this: typeof ReactiveElement,
-    warning: Warnings
+    warning: WarningKind
   ) {
     ensureOwnWarnings(this);
     const i = this.enabledWarnings!.indexOf(warning);
@@ -1258,4 +1291,4 @@ declare global {
 // This line will be used in regexes to search for ReactiveElement usage.
 // TODO(justinfagnani): inject version number at build time
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-((globalThis as any)['reactiveElementVersions'] ??= []).push('1.0.0-rc.1');
+((globalThis as any)['reactiveElementVersions'] ??= []).push('1.0.0-rc.2');

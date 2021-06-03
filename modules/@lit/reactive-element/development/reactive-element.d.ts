@@ -124,7 +124,10 @@ export declare const notEqual: HasChanged;
  * this hack to bypass any rewriting by the compiler.
  */
 declare const finalized = "finalized";
-export declare type Warnings = 'change-in-update' | 'migration';
+/**
+ * A string representing one of the supported dev mode warnings classes.
+ */
+export declare type WarningKind = 'change-in-update' | 'migration';
 export declare type Initializer = (element: ReactiveElement) => void;
 /**
  * Base element class which manages element properties and attributes. When
@@ -134,20 +137,50 @@ export declare type Initializer = (element: ReactiveElement) => void;
  */
 export declare abstract class ReactiveElement extends HTMLElement implements ReactiveControllerHost {
     /**
+     * Read or set all the enabled warning kinds for this class.
+     *
+     * This property is only used in development builds.
+     *
      * @nocollapse
      * @category dev-mode
      */
-    static enabledWarnings?: Warnings[];
+    static enabledWarnings?: WarningKind[];
     /**
+     * Enable the given warning kind for this class.
+     *
+     * This method only exists in development builds, so it should be accessed
+     * with a guard like:
+     *
+     * ```ts
+     * // Enable for all ReactiveElement classes
+     * ReactiveElement.enableWarning.?('migration');
+     *
+     * // Enable for all MyElement only
+     * MyElement.enableWarning.?('migration');
+     * ```
+     *
      * @nocollapse
      * @category dev-mode
      */
-    static enableWarning?: (type: Warnings) => void;
+    static enableWarning?: (warningKind: WarningKind) => void;
     /**
+     * Disable the given warning kind for this class.
+     *
+     * This method only exists in development builds, so it should be accessed
+     * with a guard like:
+     *
+     * ```ts
+     * // Disable for all ReactiveElement classes
+     * ReactiveElement.disableWarning.?('migration');
+     *
+     * // Disable for all MyElement only
+     * MyElement.disableWarning.?('migration');
+     * ```
+     *
      * @nocollapse
      * @category dev-mode
      */
-    static disableWarning?: (type: Warnings) => void;
+    static disableWarning?: (warningKind: WarningKind) => void;
     /**
      * @nocollapse
      */
@@ -170,7 +203,7 @@ export declare abstract class ReactiveElement extends HTMLElement implements Rea
      * @nocollapse
      * @category properties
      */
-    static elementProperties?: PropertyDeclarationMap;
+    static elementProperties: PropertyDeclarationMap;
     /**
      * User-supplied object that maps property names to `PropertyDeclaration`
      * objects containing options for configuring reactive properties. When
@@ -203,7 +236,7 @@ export declare abstract class ReactiveElement extends HTMLElement implements Rea
      * @nocollapse
      * @category styles
      */
-    static elementStyles?: CSSResultFlatArray;
+    static elementStyles: CSSResultFlatArray;
     /**
      * Array of styles to apply to the element. The styles should be defined
      * using the [[`css`]] tag function or via constructible stylesheets.

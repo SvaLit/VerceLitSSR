@@ -35,5 +35,5 @@ import { ReactiveElement } from '../reactive-element.js';
  * ```
  * @category Decorator
  */
-export declare function eventOptions(options: AddEventListenerOptions): (protoOrDescriptor: ReactiveElement | import("./base.js").ClassElement, name?: string | undefined) => any;
+export declare function eventOptions(options: AddEventListenerOptions): (protoOrDescriptor: ReactiveElement | import("./base.js").ClassElement, name?: string | number | symbol | undefined) => any;
 //# sourceMappingURL=event-options.d.ts.map

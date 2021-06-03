@@ -1,6 +1,6 @@
 {
   "name": "lit-html",
-  "version": "2.0.0-rc.2",
+  "version": "2.0.0-rc.3",
   "description": "HTML templates literals in JavaScript",
   "license": "BSD-3-Clause",
   "repository": {
@@ -11,7 +11,7 @@
   "author": "Google LLC",
   "homepage": "https://lit.dev/",
   "main": "lit-html.js",
-  "exports": {
+    "exports": {
     ".": {
       "development": "./development/lit-html.js",
       "default": "./lit-html.js"

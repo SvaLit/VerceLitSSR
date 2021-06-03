@@ -29,5 +29,5 @@ import { ReactiveElement } from '../reactive-element.js';
  * ```
  * @category Decorator
  */
-export declare function queryAll(selector: string): (protoOrDescriptor: ReactiveElement | import("./base.js").ClassElement, name?: string | undefined) => any;
+export declare function queryAll(selector: string): (protoOrDescriptor: ReactiveElement | import("./base.js").ClassElement, name?: string | number | symbol | undefined) => any;
 //# sourceMappingURL=query-all.d.ts.map

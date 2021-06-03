@@ -44,5 +44,5 @@ export declare const standardPrototypeMethod: (descriptor: PropertyDescriptor, e
 export declare const decorateProperty: ({ finisher, descriptor, }: {
     finisher?: ((ctor: typeof ReactiveElement, property: PropertyKey) => void) | null | undefined;
     descriptor?: ((property: PropertyKey) => PropertyDescriptor) | undefined;
-}) => (protoOrDescriptor: ReactiveElement | ClassElement, name?: string | undefined) => void | any;
+}) => (protoOrDescriptor: ReactiveElement | ClassElement, name?: string | number | symbol | undefined) => void | any;
 //# sourceMappingURL=base.d.ts.map

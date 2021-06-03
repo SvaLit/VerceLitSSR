@@ -47,7 +47,7 @@ var _f;
  *
  * @packageDocumentation
  */
-import { ReactiveElement } from '../../@lit/reactive-element';
+import { ReactiveElement } from '@lit/reactive-element';
 import { render, noChange } from 'lit-html';
 export * from '@lit/reactive-element';
 export * from 'lit-html';
@@ -59,7 +59,7 @@ const DEV_MODE = true;
 // This line will be used in regexes to search for LitElement usage.
 // TODO(justinfagnani): inject version number at build time
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-((_a = (_f = globalThis)['litElementVersions']) !== null && _a !== void 0 ? _a : (_f['litElementVersions'] = [])).push('3.0.0-rc.1');
+((_a = (_f = globalThis)['litElementVersions']) !== null && _a !== void 0 ? _a : (_f['litElementVersions'] = [])).push('3.0.0-rc.2');
 /**
  * Base element class that manages element properties and attributes, and
  * renders a lit-html template.
@@ -109,7 +109,7 @@ export class LitElement extends ReactiveElement {
     }
     // TODO(kschaaf): Consider debouncing directive disconnection so element moves
     // do not thrash directive callbacks
-    // https://github.com/Polymer/lit-html/issues/1457
+    // https://github.com/lit/lit/issues/1457
     /**
      * @category lifecycle
      */
@@ -169,14 +169,14 @@ if (DEV_MODE) {
                 console.warn(`\`${name}\` is implemented. It ` +
                     `has been removed from this version of LitElement. `
                 // TODO(sorvell): add link to changelog when location has stabilized.
-                // + See the changelog at https://github.com/Polymer/lit-html/blob/main/packages/lit-element/CHANGELOG.md`
+                // + See the changelog at https://github.com/lit/lit/blob/main/packages/lit-element/CHANGELOG.md`
                 );
             }
         };
-        [`render`, `getStyles`].forEach((name) =>
+        [`render`, `getStyles`].forEach((name) => 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         warnRemoved(this, name));
-        [`adoptStyles`].forEach((name) =>
+        [`adoptStyles`].forEach((name) => 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         warnRemoved(this.prototype, name));
         return true;

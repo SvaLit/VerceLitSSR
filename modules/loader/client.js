@@ -1,4 +1,4 @@
-import '#lit/experimental-hydrate-support.js';
+import 'lit/experimental-hydrate-support.js';
 import {
     hasNativeDeclarativeShadowRoots,
     hydrateShadowRoots

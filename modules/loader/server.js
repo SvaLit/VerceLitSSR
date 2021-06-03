@@ -1,7 +1,8 @@
+import 'module-alias/register';
 import {readFileSync} from "fs";
 import {resolve} from "path";
-import {render} from "#@lit-labs/ssr/lib/render-with-global-dom-shim.js";
-import {html} from "#lit";
+import {render} from "@lit-labs/ssr/lib/render-with-global-dom-shim.js";
+import {html} from "lit";
 import "../../components/app.js";
 
 const head = readFileSync(resolve(__dirname, 'head.html'));

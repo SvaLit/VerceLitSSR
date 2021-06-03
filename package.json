@@ -1,14 +1,12 @@
 {
-  "imports": {
-    "#lit": "./modules/lit/index.js",
-    "#@lit-labs/ssr/": "./modules/@lit-labs/ssr/"
-  },
+  "_moduleDirectories": ["modules"],
   "dependencies": {
     "@webcomponents/template-shadowroot": "^0.1.0",
     "escape-html": "^1.0.3",
     "koa": "^2.7.0",
     "koa-node-resolve": "^1.0.0-pre.5",
     "koa-static": "^5.0.0",
+    "module-alias": "^2.2.2",
     "node-fetch": "^2.6.0",
     "parse5": "^5.1.0",
     "resolve": "^1.10.1"

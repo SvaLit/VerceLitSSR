@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 import { ElementRenderer } from './element-renderer.js';
-import { ReactiveElement } from '../../../lit';
-import { _Φ } from '../../../lit-element/private-ssr-support.js';
+import { ReactiveElement } from 'lit';
+import { _Φ } from 'lit-element/private-ssr-support.js';
 import { render } from './render-lit-html.js';
 const { attributeToProperty, changedProperties } = _Φ;
 /**

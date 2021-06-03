@@ -307,7 +307,7 @@ export class ReactiveElement extends HTMLElement {
                 if (obj[name] !== undefined) {
                     console.warn(`\`${name}\` is implemented. It ` +
                         `has been removed from this version of ReactiveElement.` +
-                        ` See the changelog at https://github.com/Polymer/lit-html/blob/main/packages/reactive-element/CHANGELOG.md`);
+                        ` See the changelog at https://github.com/lit/lit/blob/main/packages/reactive-element/CHANGELOG.md`);
                 }
             };
             [`initialize`, `requestUpdateInternal`, `_getUpdateComplete`].forEach((name) => 
@@ -825,6 +825,20 @@ _f = finalized;
  */
 ReactiveElement[_f] = true;
 /**
+ * Memoized list of all element properties, including any superclass properties.
+ * Created lazily on user subclasses when finalizing the class.
+ * @nocollapse
+ * @category properties
+ */
+ReactiveElement.elementProperties = new Map();
+/**
+ * Memoized list of all element styles.
+ * Created lazily on user subclasses when finalizing the class.
+ * @nocollapse
+ * @category styles
+ */
+ReactiveElement.elementStyles = [];
+/**
  * Options used when calling `attachShadow`. Set this property to customize
  * the options for the shadowRoot; for example, to create a closed
  * shadowRoot: `{mode: 'closed'}`.
@@ -865,5 +879,5 @@ if (DEV_MODE) {
 // This line will be used in regexes to search for ReactiveElement usage.
 // TODO(justinfagnani): inject version number at build time
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-((_d = (_e = globalThis)['reactiveElementVersions']) !== null && _d !== void 0 ? _d : (_e['reactiveElementVersions'] = [])).push('1.0.0-rc.1');
+((_d = (_e = globalThis)['reactiveElementVersions']) !== null && _d !== void 0 ? _d : (_e['reactiveElementVersions'] = [])).push('1.0.0-rc.2');
 //# sourceMappingURL=reactive-element.js.map

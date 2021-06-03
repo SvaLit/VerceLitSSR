@@ -1,4 +1,4 @@
-import{directive as e,Directive as r}from"../../../lit/directive.js";import{getDirectiveClass as t}from"../../../lit/directive-helpers.js";
+import{directive as e,Directive as r}from"lit/directive.js";import{getDirectiveClass as t}from"lit/directive-helpers.js";
 /**
  * @license
  * Copyright 2019 Google LLC

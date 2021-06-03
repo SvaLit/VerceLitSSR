@@ -14,6 +14,7 @@ import { canTestReactiveElement, generateElementName, RenderingElement, html, } 
 import { assert } from '@esm-bundle/chai';
 const flush = window.ShadyDOM && window.ShadyDOM.flush ? window.ShadyDOM.flush : () => { };
 (canTestReactiveElement ? suite : suite.skip)('@queryAssignedNodes', () => {
+    var _a, _b;
     let container;
     let el;
     class D extends RenderingElement {
@@ -49,6 +50,24 @@ const flush = window.ShadyDOM && window.ShadyDOM.flush ? window.ShadyDOM.flush :
         queryAssignedNodes('header')
     ], E.prototype, "headerAssigned", void 0);
     customElements.define('assigned-nodes-el-2', E);
+    const defaultSymbol = Symbol('default');
+    const headerSymbol = Symbol('header');
+    class S extends RenderingElement {
+        render() {
+            return html `
+        <slot name="header"></slot>
+        <slot></slot>
+      `;
+        }
+    }
+    _a = defaultSymbol, _b = headerSymbol;
+    __decorate([
+        queryAssignedNodes()
+    ], S.prototype, _a, void 0);
+    __decorate([
+        queryAssignedNodes('header')
+    ], S.prototype, _b, void 0);
+    customElements.define('assigned-nodes-el-symbol', S);
     // Note, there are 2 elements here so that the `flatten` option of
     // the decorator can be tested.
     class C extends RenderingElement {
@@ -59,13 +78,18 @@ const flush = window.ShadyDOM && window.ShadyDOM.flush ? window.ShadyDOM.flush :
           <slot slot="footer"></slot
         ></assigned-nodes-el>
         <assigned-nodes-el-2><div id="div2">B</div></assigned-nodes-el-2>
+        <assigned-nodes-el-symbol
+          ><div id="div3">B</div></assigned-nodes-el-symbol
+        >
       `;
         }
         firstUpdated() {
             this.div = this.renderRoot.querySelector('#div1');
             this.div2 = this.renderRoot.querySelector('#div2');
+            this.div3 = this.renderRoot.querySelector('#div3');
             this.assignedNodesEl = this.renderRoot.querySelector('assigned-nodes-el');
             this.assignedNodesEl2 = this.renderRoot.querySelector('assigned-nodes-el-2');
+            this.assignedNodesEl3 = this.renderRoot.querySelector('assigned-nodes-el-symbol');
         }
     }
     customElements.define(generateElementName(), C);
@@ -116,6 +140,9 @@ const flush = window.ShadyDOM && window.ShadyDOM.flush ? window.ShadyDOM.flush :
     });
     test('returns assignedNodes for unnamed slot that is not first slot', () => {
         assert.deepEqual(el.assignedNodesEl2.defaultAssigned, [el.div2]);
+    });
+    test('returns assignedNodes for unnamed slot via symbol property', () => {
+        assert.deepEqual(el.assignedNodesEl3[defaultSymbol], [el.div3]);
     });
     test('returns flattened assignedNodes for slot', () => {
         // Note, `defaultAssigned` does `flatten` so we test that the property

@@ -1,17 +1,17 @@
 /// <reference lib="dom" />
-import { nothing, noChange } from '../../../lit';
-import { PartType } from '../../../lit/directive.js';
-import { isTemplateResult } from '../../../lit/directive-helpers.js';
-import { _Σ } from '../../../lit-html/private-ssr-support.js';
+import { nothing, noChange } from 'lit';
+import { PartType } from 'lit/directive.js';
+import { isTemplateResult } from 'lit/directive-helpers.js';
+import { _Σ } from 'lit-html/private-ssr-support.js';
 const { getTemplateHtml, marker, markerMatch, boundAttributeSuffix, overrideDirectiveResolve, getAttributePartCommittedValue, resolveDirective, AttributePart, PropertyPart, BooleanAttributePart, EventPart, } = _Σ;
-import { digestForTemplateResult } from '../../../lit/experimental-hydrate.js';
+import { digestForTemplateResult } from 'lit/experimental-hydrate.js';
 import { getElementRenderer, } from './element-renderer.js';
 import { createRequire } from 'module';
-// const require2 = createRequire(import.meta.url);
+// const require = createRequire(import.meta.url);
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const escapeHtml = require('escape-html');
 import { traverse, parseFragment, isCommentNode, isElement, } from './util/parse5-utils.js';
-import { isRenderLightDirective } from '../../../@lit-labs/ssr-client/directives/render-light.js';
+import { isRenderLightDirective } from '@lit-labs/ssr-client/directives/render-light.js';
 import { reflectedAttributeName } from './reflected-attributes.js';
 import { LitElementRenderer } from './lit-element-renderer.js';
 const patchedDirectiveCache = new Map();
