@@ -15,12 +15,6 @@
       "destination": "/index.js"
     }
   ],
-  "redirects": [
-    {
-      "source": "/components/imports.js",
-      "destination": "/components/imports.client.js"
-    }
-  ],
   "github": {
     "silent": true
   }

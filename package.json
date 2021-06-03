@@ -1,4 +1,8 @@
 {
+  "imports": {
+    "#lit": "./modules/lit/index.js",
+    "#@lit-labs/ssr/": "./modules/@lit-labs/ssr/"
+  },
   "dependencies": {
     "@webcomponents/template-shadowroot": "^0.1.0",
     "escape-html": "^1.0.3",

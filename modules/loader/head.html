@@ -1,7 +1,15 @@
 <head>
     <title>LitSSR</title>
     <meta name="color-scheme" content="dark light">
-    <script type="importmap" src="/modules/loader/importmap.json"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "#lit": "https://cdn.skypack.dev/lit/",
+            "#lit/": "https://cdn.skypack.dev/lit/",
+            "@webcomponents/template-shadowroot/": "https://cdn.skypack.dev/@webcomponents/template-shadowroot/"
+        }
+    }
+    </script>
     <script src="https://ga.jspm.io/npm:es-module-shims@0.10.1/dist/es-module-shims.js" defer></script>
     <script type="module" src="/modules/loader/client.js" defer></script>
 </head>
