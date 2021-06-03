@@ -1,5 +1,10 @@
 {
-  "_moduleDirectories": ["modules"],
+  "scripts": {
+    "postinstall": "node install.js"
+  },
+  "_moduleDirectories": [
+    "modules"
+  ],
   "dependencies": {
     "@webcomponents/template-shadowroot": "^0.1.0",
     "escape-html": "^1.0.3",
