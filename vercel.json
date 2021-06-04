@@ -6,12 +6,7 @@
     },
     {
       "src": "/index.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": [
-          "modules/**"
-        ]
-      }
+      "use": "@vercel/node"
     }
   ],
   "rewrites": [
