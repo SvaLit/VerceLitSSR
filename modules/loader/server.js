@@ -1,4 +1,3 @@
-import 'module-alias/register';
 import {readFileSync} from "fs";
 import {resolve} from "path";
 import {render} from "@lit-labs/ssr/lib/render-with-global-dom-shim.js";
