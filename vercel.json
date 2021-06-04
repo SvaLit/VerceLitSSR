@@ -9,7 +9,7 @@
       "use": "@vercel/node",
       "config": {
         "includeFiles": [
-          "modules2/**"
+          "modules/**"
         ]
       }
     }
