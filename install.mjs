@@ -9,7 +9,7 @@ const modulesDir = 'modules',
         prepareDir: true,
         removeOldPackages: true,
         movingNewPackages: true,
-        removePackageTypes: false,
+        removePackageTypes: true,
         removeIssues: true
     },
     getPath = path => new URL(path + '/', import.meta.url);
