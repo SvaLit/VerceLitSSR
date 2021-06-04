@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "postinstall": "node ./install.mjs"
+    "install-modules": "node ./install.mjs"
   },
   "_moduleDirectories": [
     "modules"
