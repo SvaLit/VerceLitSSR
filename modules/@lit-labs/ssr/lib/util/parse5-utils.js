@@ -3,8 +3,6 @@
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-import { createRequire } from 'module';
-// const require = createRequire(import.meta.url);
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const parse5 = require('parse5');
 export const parseFragment = parse5.parseFragment;

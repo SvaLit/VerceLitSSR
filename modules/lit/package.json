@@ -14,7 +14,7 @@
   "homepage": "https://lit.dev/",
   "main": "index.js",
   "module": "index.js",
-    "exports": {
+  "exports": {
     ".": {
       "default": "./index.js"
     },

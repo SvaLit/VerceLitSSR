@@ -1,6 +1,4 @@
 /// <reference lib="dom" />
-import { createRequire } from 'module';
-// const require = createRequire(import.meta.url);
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const escapeHtml = require('escape-html');
 export const getElementRenderer = ({ elementRenderers }, tagName, ceClass = customElements.get(tagName), attributes = new Map()) => {

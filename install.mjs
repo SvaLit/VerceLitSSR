@@ -1,30 +1,30 @@
-import {access, rename, mkdir, readFile, writeFile} from 'fs/promises';
+import {access, rename, mkdir, readFile, writeFile, rmdir, rm} from 'fs/promises';
 import glob from 'glob';
 
 console.log('Hey from install.js !');
 
-// 1. Install Lit packages from NPM
-
-// 2. Move to another directory (from node_modules)
-
-const modulesDir = 'modules2',
+const modulesDir = 'modules',
     packages = ['@lit', '@lit-labs', '@types', 'lit', 'lit-element', 'lit-html'],
     getPath = path => new URL(path + '/', import.meta.url);
 
-try {
-    await access(getPath(modulesDir))
-} catch (e) {
-    await mkdir(getPath(modulesDir))
-}
-try {
-    await Promise.all(packages.map(async pkg => await rename(getPath('node_modules/' + pkg), getPath(modulesDir + '/' + pkg))));
-} catch (e) {
-    console.error(e);
-}
+console.log('Target modules path:', getPath(modulesDir).pathname)
 
-// 3. Remove all "type": "module" from packages
-await glob("modules2/**/package.json", {}, function (er, files) {
-    // console.debug(files);
+await access(getPath(modulesDir)).catch(async () => await mkdir(getPath(modulesDir)).catch(console.error));
+
+console.log('Preparing directory...')
+
+await Promise.all(packages.map(async pkg => await rm(getPath(modulesDir + '/' + pkg), {
+    recursive: true,
+    force: true
+}).catch(console.error)));
+
+console.log('Moving packages...')
+
+await Promise.all(packages.map(async pkg => await rename(getPath('node_modules/' + pkg), getPath(modulesDir + '/' + pkg)).catch(console.error)));
+
+console.log('Updating package configurations...')
+
+await glob("modules/**/package.json", {}, function (er, files) {
     files.forEach(async file => {
         try {
             const path = new URL(file, import.meta.url),
@@ -38,9 +38,11 @@ await glob("modules2/**/package.json", {}, function (er, files) {
     })
 })
 
-// 4. Remove oversetting "require" method in sources
+console.log('Removing issues...')
 
-const enemyString = `const require = createRequire(import.meta.url);`,
+const enemyString = `import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+`,
     enemyFiles = [
         '@lit-labs/ssr/lib/element-renderer.js',
         '@lit-labs/ssr/lib/render-lit-html.js',

@@ -3,7 +3,7 @@
     "postinstall": "node ./install.mjs"
   },
   "_moduleDirectories": [
-    "modules2"
+    "modules"
   ],
   "dependencies": {
     "@lit-labs/ssr": "^1.0.0-rc.1",

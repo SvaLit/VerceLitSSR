@@ -15,7 +15,7 @@
   "homepage": "https://lit.dev/",
   "main": "reactive-element.js",
   "module": "reactive-element.js",
-    "exports": {
+  "exports": {
     ".": {
       "development": "./development/reactive-element.js",
       "default": "./reactive-element.js"

@@ -6,8 +6,6 @@ import { _Σ } from 'lit-html/private-ssr-support.js';
 const { getTemplateHtml, marker, markerMatch, boundAttributeSuffix, overrideDirectiveResolve, getAttributePartCommittedValue, resolveDirective, AttributePart, PropertyPart, BooleanAttributePart, EventPart, } = _Σ;
 import { digestForTemplateResult } from 'lit/experimental-hydrate.js';
 import { getElementRenderer, } from './element-renderer.js';
-import { createRequire } from 'module';
-// const require = createRequire(import.meta.url);
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const escapeHtml = require('escape-html');
 import { traverse, parseFragment, isCommentNode, isElement, } from './util/parse5-utils.js';

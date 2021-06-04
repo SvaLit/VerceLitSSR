@@ -11,7 +11,7 @@
   "author": "Google LLC",
   "homepage": "https://lit.dev/",
   "main": "lit-html.js",
-    "exports": {
+  "exports": {
     ".": {
       "development": "./development/lit-html.js",
       "default": "./lit-html.js"
