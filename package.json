@@ -1,8 +1,6 @@
 {
   "scripts": {
-    "build": "node ./install.mjs",
-    "vercel-build": "node ./install.mjs",
-    "postinstall": "node ./install.mjs"
+    "vercel-build": "node ./install.mjs"
   },
   "_moduleDirectories": [
     "modules2"
