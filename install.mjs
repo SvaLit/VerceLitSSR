@@ -1,4 +1,4 @@
-import {access, rename, mkdir, readFile, writeFile, rmdir, rm} from 'fs/promises';
+import {access, rename, mkdir, readFile, writeFile, rm} from 'fs/promises';
 import glob from 'glob';
 
 console.log('Hey from install.js !');
