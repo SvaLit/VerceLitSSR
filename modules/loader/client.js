@@ -4,7 +4,7 @@ import {
     hydrateShadowRoots
 } from '@webcomponents/template-shadowroot/template-shadowroot.js';
 
-if (!hasNativeDeclarativeShadowRoots) {
+if (!hasNativeDeclarativeShadowRoots()) {
     hydrateShadowRoots(document.body);
 }
 
