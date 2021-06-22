@@ -4,7 +4,11 @@ import {
     hydrateShadowRoots
 } from '@webcomponents/template-shadowroot/template-shadowroot.js';
 
-if (!hasNativeDeclarativeShadowRoots()) {
+function supportsDeclarativeShadowDOM() {
+    return HTMLTemplateElement.prototype.hasOwnProperty("shadowRoot");
+}
+
+if (!supportsDeclarativeShadowDOM()) {
     hydrateShadowRoots(document.body);
 }
 
