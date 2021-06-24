@@ -1,9 +1,7 @@
 {
-  "imports": {
-    "#lit": "./modules/lit/index.js",
-    "#@lit-labs/ssr/": "./modules/@lit-labs/ssr/"
-  },
   "dependencies": {
+    "@lit-labs/ssr": "^1.0.0-rc.1",
+    "lit": "^2.0.0-rc.2",
     "@webcomponents/template-shadowroot": "^0.1.0",
     "escape-html": "^1.0.3",
     "koa": "^2.7.0",

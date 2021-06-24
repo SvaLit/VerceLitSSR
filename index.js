@@ -1,3 +1,3 @@
-import loader from './modules/loader/server.js';
+import loader from './loader/server.js';
 
 export default loader;
