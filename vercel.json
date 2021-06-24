@@ -15,6 +15,7 @@
       "destination": "/index.js"
     }
   ],
+  "public": true,
   "github": {
     "silent": true
   }
