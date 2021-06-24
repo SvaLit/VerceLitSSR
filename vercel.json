@@ -5,14 +5,14 @@
       "use": "@vercel/static"
     },
     {
-      "src": "/index.mjs",
+      "src": "/index.js",
       "use": "@vercel/node"
     }
   ],
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.mjs"
+      "destination": "/index.js"
     }
   ],
   "github": {
