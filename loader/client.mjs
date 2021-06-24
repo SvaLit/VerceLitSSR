@@ -12,4 +12,4 @@ if (!supportsDeclarativeShadowDOM()) {
     hydrateShadowRoots(document.body);
 }
 
-import('/components/app.js');
+import('/components/app.mjs');
