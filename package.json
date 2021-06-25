@@ -1,10 +1,10 @@
 {
   "type": "module",
   "dependencies": {
-    "@lit-labs/ssr": "^1.0.0-rc.1",
-    "lit": "^2.0.0-rc.2"
+    "@lit-labs/ssr": "*",
+    "lit": "*"
   },
   "devDependencies": {
-    "@webcomponents/template-shadowroot": "^0.1.0"
+    "@webcomponents/template-shadowroot": "*"
   }
 }

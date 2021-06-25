@@ -5,14 +5,14 @@
       "use": "@vercel/static"
     },
     {
-      "src": "/index.js",
+      "src": "/index.*",
       "use": "@vercel/node@canary"
     }
   ],
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.js"
+      "destination": "/"
     }
   ],
   "public": true,
