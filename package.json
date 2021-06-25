@@ -2,14 +2,9 @@
   "type": "module",
   "dependencies": {
     "@lit-labs/ssr": "^1.0.0-rc.1",
-    "lit": "^2.0.0-rc.2",
-    "@webcomponents/template-shadowroot": "^0.1.0",
-    "escape-html": "^1.0.3",
-    "koa": "^2.7.0",
-    "koa-node-resolve": "^1.0.0-pre.5",
-    "koa-static": "^5.0.0",
-    "node-fetch": "^2.6.0",
-    "parse5": "^5.1.0",
-    "resolve": "^1.10.1"
+    "lit": "^2.0.0-rc.2"
+  },
+  "devDependencies": {
+    "@webcomponents/template-shadowroot": "^0.1.0"
   }
 }
