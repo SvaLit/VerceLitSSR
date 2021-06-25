@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "@lit-labs/ssr": "latest",
     "lit": "latest"
