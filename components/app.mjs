@@ -22,7 +22,7 @@ export class AppDemo extends LitElement {
     }
 
     render() {
-        return html`<p>Path: ${this.url} ${this.hydrated ? '(Hydrated)' : ''}</p>`;
+        return html`<p>Path: ${this.url} <slot>${this.hydrated ? '(Hydrated)' : ''}</slot></p>`;
     }
 }
 
