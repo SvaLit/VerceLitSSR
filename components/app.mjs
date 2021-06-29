@@ -20,7 +20,7 @@ export class AppDemo extends LitElement {
     }
 
     render() {
-        return html`<p>Path: ${this.url} (${this.hydrated ? '<span style="color: greenyellow">Hydrated</span>' : html`<slot></slot>`})</p>`;
+        return html`<p>Path: ${this.url} (${this.hydrated ? html`<span style="color: greenyellow">Hydrated</span>` : html`<slot></slot>`})</p>`;
     }
 }
 
