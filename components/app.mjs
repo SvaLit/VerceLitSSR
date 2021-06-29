@@ -15,7 +15,7 @@ export class AppDemo extends LitElement {
     }
 
     firstUpdated() {
-        this.url = location.pathname;
+        this.url = location.href.replace(location.origin, '');
         this.hydrated = true;
     }
 
