@@ -15,10 +15,8 @@ export class AppDemo extends LitElement {
     }
 
     firstUpdated() {
-        setTimeout(() => {
-            this.hydrated = true;
-            this.url = location.pathname;
-        }, 1000);
+        this.url = location.pathname;
+        this.hydrated = true;
     }
 
     render() {
