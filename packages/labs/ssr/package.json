@@ -57,7 +57,7 @@
     "uvu": "^0.5.1"
   },
   "dependencies": {
-    "@lit-labs/ssr-client": "^1.0.0-rc.1",
+    "@lit-labs/ssr-client": "file:../ssr-client",
     "@lit-labs/task": "^1.0.0-rc.1",
     "@webcomponents/template-shadowroot": "^0.1.0",
     "escape-html": "^1.0.3",
