@@ -1,0 +1,7 @@
+!function(i){"function"==typeof define&&define.amd?define(i):i()}((function(){"use strict";
+/**
+     * @license
+     * Copyright 2017 Google LLC
+     * SPDX-License-Identifier: BSD-3-Clause
+     */var i,t,n="__scoped";null!==(i=(t=globalThis).reactiveElementPlatformSupport)&&void 0!==i||(t.reactiveElementPlatformSupport=function(i){var t=i.ReactiveElement,o=window;if(void 0!==o.ShadyCSS&&(!o.ShadyCSS.nativeShadow||o.ShadyCSS.ApplyShim)){var e=t.prototype;o.ShadyDOM&&o.ShadyDOM.inUse&&!0===o.ShadyDOM.noPatch&&o.ShadyDOM.patchElementProto(e);var r=e.createRenderRoot;e.createRenderRoot=function(){var i,t,e,s=this.localName;if(o.ShadyCSS.nativeShadow)return r.call(this);if(!this.constructor.hasOwnProperty(n)){this.constructor[n]=!0;var u=this.constructor.elementStyles.map((function(i){return i instanceof CSSStyleSheet?Array.from(i.cssRules).reduce((function(i,t){return i+t.cssText}),""):i.cssText}));null===(t=null===(i=o.ShadyCSS)||void 0===i?void 0:i.ScopingShim)||void 0===t||t.prepareAdoptedCssText(u,s),void 0===this.constructor.ΞJ&&o.ShadyCSS.prepareTemplateStyles(document.createElement("template"),s)}return null!==(e=this.shadowRoot)&&void 0!==e?e:this.attachShadow(this.constructor.shadowRootOptions)};var s=e.connectedCallback;e.connectedCallback=function(){s.call(this),this.hasUpdated&&o.ShadyCSS.styleElement(this)};var u=e.ΞE;e.ΞE=function(i){var t=!this.hasUpdated;u.call(this,i),t&&o.ShadyCSS.styleElement(this)}}})}));
+//# sourceMappingURL=polyfill-support.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"server-until.d.ts","sourceRoot":"","sources":["../../src/directives/server-until.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAIH,OAAO,EAAC,cAAc,EAAC,MAAM,yBAAyB,CAAC;AAEvD,cAAM,oBAAqB,SAAQ,cAAc;IAC/C,MAAM,CAAC,eAAe,UAAQ;CAC/B;AAED;GACG;AACH,eAAO,MAAM,WAAW,mGAAkC,CAAC;AAE3D,eAAO,MAAM,sBAAsB,UAAW,OAAO,KAAG,OACoB,CAAC"}

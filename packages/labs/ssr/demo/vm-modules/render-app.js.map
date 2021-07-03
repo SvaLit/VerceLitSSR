@@ -1,0 +1,1 @@
+{"version":3,"file":"render-app.js","sourceRoot":"","sources":["../../src/demo/vm-modules/render-app.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAEH;;GAEG;AAEH,OAAO,EAAC,MAAM,EAAC,MAAM,8BAA8B,CAAC;AACpD,OAAO,EAAC,QAAQ,EAAE,WAAW,EAAE,SAAS,EAAC,MAAM,gBAAgB,CAAC;AAEhE,MAAM,UAAU,wBAAwB;IACtC,OAAO,SAAS,CAAC,GAAG,EAAE,CAAC,MAAM,CAAC,QAAQ,CAAC,WAAW,CAAC,CAAC,CAAC,CAAC;AACxD,CAAC"}

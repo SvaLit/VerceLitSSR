@@ -1,6 +1,1 @@
-/demo/
-/lib/
 /node_modules/
-/test/
-/index.*
-!/custom_typings/*.d.ts
