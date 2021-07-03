@@ -1,8 +1,8 @@
 import {fileURLToPath} from 'url';
 import {readFileSync} from "fs";
 import {resolve, dirname} from "path";
-import {render} from "@ponomarevlad/lit-labs-ssr/lib/render-with-global-dom-shim.js";
-import {readableFrom} from '@ponomarevlad/lit-labs-ssr/lib/readable.js';
+import {render} from "@lit-labs/ssr/lib/render-with-global-dom-shim.js";
+import {readableFrom} from '@lit-labs/ssr/lib/readable.js';
 import {html} from "lit";
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import "../components/app.mjs";

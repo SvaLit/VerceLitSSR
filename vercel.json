@@ -5,6 +5,10 @@
       "use": "@vercel/static"
     },
     {
+      "src": "/node_modules/es-module-shims/dist/**",
+      "use": "@vercel/static"
+    },
+    {
       "src": "/index.*",
       "use": "@vercel/node@canary"
     }
