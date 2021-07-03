@@ -1,7 +1,10 @@
 {
   "type": "module",
   "dependencies": {
-    "@lit-labs/ssr": "latest",
+    "@ponomarevlad/lit-html": "latest",
+    "@ponomarevlad/lit-labs-ssr": "latest",
+    "@ponomarevlad/lit-labs-ssr-client": "latest",
+    "isomorphic-fetch": "^3.0.0",
     "lit": "latest"
   },
   "devDependencies": {
