@@ -64,9 +64,9 @@
     "koa": "^2.7.0",
     "koa-node-resolve": "^1.0.0-pre.5",
     "koa-static": "^5.0.0",
-    "lit": "^2.0.0-rc.1",
-    "lit-element": "^3.0.0-rc.1",
-    "lit-html": "^2.0.0-rc.1",
+    "lit": "file:../../lit",
+    "lit-element": "file:../../lit-element",
+    "lit-html": "file:../../lit-html",
     "node-fetch": "^2.6.0",
     "parse5": "^5.1.0",
     "resolve": "^1.10.1"
