@@ -1,6 +1,5 @@
 import {LitElement, html} from "lit";
-import {until} from 'lit/directives/until.js';
-import {serverUntil} from "@lit-labs/ssr-client/directives/server-until.js";
+import {until} from '#isomorphic-until';
 import 'isomorphic-fetch';
 
 export function isServer() {
@@ -40,7 +39,7 @@ export class AppDemo extends LitElement {
     render() {
         return html`<p>Path: ${this.url} ${this.hydrated ? '(Hydrated)' : ''}</p>
         <p>Worker IP:
-            <span>${isServer() ? serverUntil(this.getIP(), 'Updating...') : until(this.getIP(), 'Updating...')}</span>
+            <span>${until(this.getIP(), 'Updating...')}</span>
         </p>`;
     }
 }

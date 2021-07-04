@@ -12,5 +12,8 @@
   "devDependencies": {
     "@webcomponents/template-shadowroot": "latest",
     "internal-scripts": "file:packages/internal-scripts"
+  },
+  "imports": {
+    "#isomorphic-until": "./packages/isomorphic-until/index.mjs"
   }
 }
