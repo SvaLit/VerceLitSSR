@@ -78,9 +78,9 @@
     "/directives/"
   ],
   "dependencies": {
-    "@lit/reactive-element": "^1.0.0-rc.2",
-    "lit-element": "^3.0.0-rc.2",
-    "lit-html": "^2.0.0-rc.3"
+    "@lit/reactive-element": "file:../reactive-element",
+    "lit-element": "file:../lit-element",
+    "lit-html": "file:../lit-html"
   },
   "devDependencies": {
     "@esm-bundle/chai": "^4.1.5",

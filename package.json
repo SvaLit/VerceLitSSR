@@ -4,11 +4,11 @@
     "@lit-labs/ssr": "file:packages/labs/ssr",
     "@lit-labs/ssr-client": "file:packages/labs/ssr-client",
     "@lit/reactive-element": "file:packages/reactive-element",
-    "es-module-shims": "^0.4.7",
-    "isomorphic-fetch": "^3.0.0",
+    "es-module-shims": "file:packages/es-module-shims",
     "lit": "file:packages/lit",
     "lit-element": "file:packages/lit-element",
-    "lit-html": "file:packages/lit-html"
+    "lit-html": "file:packages/lit-html",
+    "isomorphic-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@webcomponents/template-shadowroot": "latest",

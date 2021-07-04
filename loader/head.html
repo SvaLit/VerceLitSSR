@@ -6,7 +6,7 @@
     <script type="importmap">
     {
         "imports": {
-            "lit/": "/packages/lit/",
+                "lit/": "/packages/lit/",
             "lit": "/packages/lit/index.js",
             "lit-html/": "/packages/lit-html/",
             "lit-html": "/packages/lit-html/lit-html.js",
@@ -16,12 +16,25 @@
             "@lit-labs/ssr-client/": "/packages/labs/ssr-client/",
             "@lit/reactive-element/": "/packages/reactive-element/",
             "@lit/reactive-element": "/packages/reactive-element/reactive-element.js",
-            "@webcomponents/template-shadowroot/": "https://cdn.skypack.dev/@webcomponents/template-shadowroot/",
-            "isomorphic-fetch": "https://cdn.skypack.dev/isomorphic-fetch/",
-            "isomorphic-fetch/": "https://cdn.skypack.dev/isomorphic-fetch/"
+                "@webcomponents/template-shadowroot/": "https://cdn.skypack.dev/@webcomponents/template-shadowroot/",
+                "@webcomponents/template-shadowroot/template-shadowroot.js": "https://cdn.skypack.dev/pin/@webcomponents/template-shadowroot@v0.1.0-fppQxCYy1YMWhMeJ9XPA/mode=imports,min/optimized/@webcomponents/template-shadowroot.js",
+                "isomorphic-fetch": "https://cdn.skypack.dev/isomorphic-fetch/",
+                "isomorphic-fetch/": "https://cdn.skypack.dev/isomorphic-fetch/"
         }
     }
     </script>
-    <script src="/node_modules/es-module-shims/dist/es-module-shims.js" defer></script>
+    <script type="module" async noshim>
+        import {
+            hydrateShadowRoots
+        } from 'https://cdn.skypack.dev/pin/@webcomponents/template-shadowroot@v0.1.0-fppQxCYy1YMWhMeJ9XPA/mode=imports,min/optimized/@webcomponents/template-shadowroot.js';
+
+        function supportsDeclarativeShadowDOM() {
+            return HTMLTemplateElement.prototype.hasOwnProperty("shadowRoot");
+        }
+
+        if (!supportsDeclarativeShadowDOM()) {
+            hydrateShadowRoots(document.body);
+        }
+    </script>
     <script type="module" src="/loader/client.mjs" defer></script>
 </head>
