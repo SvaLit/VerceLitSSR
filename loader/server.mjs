@@ -15,7 +15,7 @@ export default async (req, res) => {
         <!DOCTYPE html>
         <html lang="ru">${unsafeHTML(head.toString())}
         <body><script src="https://unpkg.com/es-module-shims@0.12.1/dist/es-module-shims.min.js" async noshim></script>
-        <lit-app url="${req.url}">Hot hydrated</lit-app>
+        <lit-app url="${req.url}"><span style="color: coral">Not hydrated</span></lit-app>
         </body>
         </html>`), true).pipe(res);
 }

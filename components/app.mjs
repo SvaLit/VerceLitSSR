@@ -31,14 +31,16 @@ export class AppDemo extends LitElement {
 
     firstUpdated(_changedProperties) {
         this.hydrated = true;
-        this.url = location.pathname;
+        this.url = location.href.replace(location.origin, '');
         this.ip = fetchIP();
         super.firstUpdated(_changedProperties);
     }
 
     render() {
-        return html`<p>Path: ${this.url} ${this.hydrated ? '(Hydrated)' : ''}</p>
-        <p>Worker IP: <span>${until(this.getIP(), 'Updating...')}</span></p>`;
+        return html`<p>Path: ${this.url}
+                (${this.hydrated ? html`<span style="color: greenyellow">Hydrated</span>` : html`
+                <slot></slot>`})</p>
+        <p><span style="color: gray">Worker IP:</span> ${until(this.getIP(), 'Updating...')}</p>`;
     }
 }
 
