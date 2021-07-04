@@ -4,7 +4,6 @@
     "@lit-labs/ssr": "file:packages/labs/ssr",
     "@lit-labs/ssr-client": "file:packages/labs/ssr-client",
     "@lit/reactive-element": "file:packages/reactive-element",
-    "es-module-shims": "file:packages/es-module-shims",
     "lit": "file:packages/lit",
     "lit-element": "file:packages/lit-element",
     "lit-html": "file:packages/lit-html",
