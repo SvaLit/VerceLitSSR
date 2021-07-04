@@ -7,7 +7,7 @@ export function isServer() {
 }
 
 export async function fetchIP() {
-    return await fetch('https://api.ipify.org?format=json'/*, {mode: "no-cors"}*/).then(r => r.json()).then(r => r.ip);
+    return await fetch('https://api.ipify.org?format=json').then(r => r.json()).then(r => r.ip);
 }
 
 export class AppDemo extends LitElement {
@@ -38,9 +38,7 @@ export class AppDemo extends LitElement {
 
     render() {
         return html`<p>Path: ${this.url} (${this.hydrated ? html`<span style="color: greenyellow">Hydrated</span>` :
-                html`
-                    <slot></slot>`})</p><p><span style="color: gray">Worker IP:</span>
-            ${until(this.getIP(), 'Updating...')}</p>`;
+                html`<slot></slot>`})</p><p><span style="color: gray">Worker IP:</span> ${until(this.getIP(), 'Updating...')}</p>`;
     }
 }
 
