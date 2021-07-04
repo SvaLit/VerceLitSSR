@@ -38,9 +38,7 @@ export class AppDemo extends LitElement {
 
     render() {
         return html`<p>Path: ${this.url} ${this.hydrated ? '(Hydrated)' : ''}</p>
-        <p>Worker IP:
-            <span>${until(this.getIP(), 'Updating...')}</span>
-        </p>`;
+        <p>Worker IP: <span>${until(this.getIP(), 'Updating...')}</span></p>`;
     }
 }
 
