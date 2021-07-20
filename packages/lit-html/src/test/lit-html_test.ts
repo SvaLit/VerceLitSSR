@@ -32,8 +32,8 @@ import {AsyncDirective} from '../async-directive.js';
 import {createRef, ref} from '../directives/ref.js';
 
 // For compiled template tests
-import {_Σ} from '../private-ssr-support.js';
-const {AttributePart} = _Σ;
+import {_$LH} from '../private-ssr-support.js';
+const {AttributePart} = _$LH;
 
 type AttributePart = InstanceType<typeof AttributePart>;
 
@@ -1529,7 +1529,8 @@ suite('lit-html', () => {
       };
       assertRender(
         {
-          _$litType$: _$lit_template_1,
+          // This property needs to remain unminified.
+          ['_$litType$']: _$lit_template_1,
           values: ['A'],
         },
         'A'
@@ -1543,7 +1544,8 @@ suite('lit-html', () => {
         parts: [{type: 2, index: 1}],
       };
       const result = {
-        _$litType$: _$lit_template_1,
+        // This property needs to remain unminified.
+        ['_$litType$']: _$lit_template_1,
         values: ['A'],
       };
       assertRender(result, '<div>A</div>');
@@ -1564,7 +1566,8 @@ suite('lit-html', () => {
         ],
       };
       const result = {
-        _$litType$: _$lit_template_1,
+        // This property needs to remain unminified.
+        ['_$litType$']: _$lit_template_1,
         values: ['A'],
       };
       assertRender(result, '<div foo="A"></div>');
@@ -1578,7 +1581,8 @@ suite('lit-html', () => {
         parts: [{type: 6, index: 0}],
       };
       const result = {
-        _$litType$: _$lit_template_1,
+        // This property needs to remain unminified.
+        ['_$litType$']: _$lit_template_1,
         values: [ref(r)],
       };
       assertRender(result, '<div></div>');
@@ -2626,12 +2630,8 @@ suite('lit-html', () => {
   //   });
   // });
 
-  let securityHooksSuiteFunction:
-    | Mocha.SuiteFunction
-    | Mocha.PendingSuiteFunction = suite;
-  if (!DEV_MODE) {
-    securityHooksSuiteFunction = suite.skip;
-  }
+  const securityHooksSuiteFunction = DEV_MODE ? suite : suite.skip;
+
   securityHooksSuiteFunction('enahnced security hooks', () => {
     class FakeSanitizedWrapper {
       sanitizeTo: string;
@@ -2779,6 +2779,28 @@ suite('lit-html', () => {
       assert.deepEqual(sanitizerCalls, [
         {values: ['bad', safe], name: 'foo', type: 'property', nodeName: 'DIV'},
       ]);
+    });
+  });
+
+  const warningsSuiteFunction = DEV_MODE ? suite : suite.skip;
+
+  warningsSuiteFunction('warnings', () => {
+    test('warns on octal escape', () => {
+      const warnings: Array<unknown[]> = [];
+      const originalWarn = console.warn;
+      console.warn = (...args: unknown[]) => {
+        warnings.push(args);
+        return originalWarn.call(console, ...args);
+      };
+      try {
+        render(html`\2022`, container);
+        assert.fail();
+      } catch (e) {
+        assert.equal(warnings.length, 1);
+        assert.include(warnings[0][0], 'escape');
+      } finally {
+        console.warn = originalWarn;
+      }
     });
   });
 

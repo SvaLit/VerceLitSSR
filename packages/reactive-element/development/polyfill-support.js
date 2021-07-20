@@ -81,13 +81,12 @@ var SCOPED = '__scoped';
      */
     var didUpdate = elementProto._$didUpdate;
     elementProto._$didUpdate = function (changedProperties) {
-        var isFirstUpdate = !this.hasUpdated;
-        didUpdate.call(this, changedProperties);
         // Note, must do first update here so rendering has completed before
         // calling this and styles are correct by updated/firstUpdated.
-        if (isFirstUpdate) {
+        if (!this.hasUpdated) {
             extraGlobals.ShadyCSS.styleElement(this);
         }
+        didUpdate.call(this, changedProperties);
     };
 });
 //# sourceMappingURL=polyfill-support.js.map

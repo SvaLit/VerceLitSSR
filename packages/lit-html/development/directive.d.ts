@@ -18,8 +18,10 @@ export declare type DirectiveParameters<C extends Directive> = Parameters<C['ren
  * returns a DirectiveResult object that captures the arguments.
  */
 export interface DirectiveResult<C extends DirectiveClass = DirectiveClass> {
-    /** @internal */
-    _$litDirective$: C;
+    /**
+     * This property needs to remain unminified.
+     * @internal */
+    ['_$litDirective$']: C;
     /** @internal */
     values: DirectiveParameters<InstanceType<C>>;
 }
@@ -67,7 +69,7 @@ export declare abstract class Directive {
     __directive?: Directive;
     _$parent: Disconnectable;
     _$disconnectableChildren?: Set<Disconnectable>;
-    _$setDirectiveConnected?(isConnected: boolean): void;
+    ['_$setDirectiveConnected']?(isConnected: boolean): void;
     constructor(_partInfo: PartInfo);
     /** @internal */
     _$initialize(part: Part, parent: Disconnectable, attributeIndex: number | undefined): void;

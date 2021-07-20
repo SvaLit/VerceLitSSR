@@ -207,8 +207,8 @@
         "affectsGlobalScope": true
       },
       "./src/polyfill-support.ts": {
-        "version": "4dec553ed060e79c9875e9895b5c9d3244bdb8cb1a7e2fc7466b7aec85433fa1",
-        "signature": "60f677e393c8c60be783696ff1396492fc48e4860c86f91e51dd94534f6ba1f9",
+        "version": "f82aa161a630a62f7813b6689b15279f7c2cb97af4cd21b88f51cd79423cfeca",
+        "signature": "66620d9ba82e192db06d9e4cd4c3ac2afecdd43e67455fc7dc718dd70ada30a0",
         "affectsGlobalScope": true
       },
       "./node_modules/@types/chai/index.d.ts": {

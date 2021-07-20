@@ -207,7 +207,7 @@
         "affectsGlobalScope": true
       },
       "./src/polyfill-support.ts": {
-        "version": "0069e431fa619772de21f103d9932abb49e017434986388c0112b1f3b6c511cc",
+        "version": "a8367784d642e06c6e923dd34a9d1d6e832dfe210cb8c40ce9de4060a2343bf6",
         "signature": "0972a8b889de1b9816f4fb3258122a4af7379ce2c5d01c1f9244aa1829a0f5cf",
         "affectsGlobalScope": true
       },

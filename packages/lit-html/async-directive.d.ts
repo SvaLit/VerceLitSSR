@@ -152,7 +152,7 @@ export declare abstract class AsyncDirective extends Directive {
      *     removed; false when the tree is being disconnected
      * @internal
      */
-    _$setDirectiveConnected(isConnected: boolean, isClearingDirective?: boolean): void;
+    ['_$setDirectiveConnected'](isConnected: boolean, isClearingDirective?: boolean): void;
     /**
      * Private method used to set the connection state of the directive and call
      * the respective `disconnected` or `reconnected` callback. Note thatsince

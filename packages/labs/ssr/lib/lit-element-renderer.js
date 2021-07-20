@@ -5,9 +5,9 @@
  */
 import { ElementRenderer } from './element-renderer.js';
 import { ReactiveElement } from 'lit';
-import { _Φ } from 'lit-element/private-ssr-support.js';
+import { _$LE } from 'lit-element/private-ssr-support.js';
 import { render } from './render-lit-html.js';
-const { attributeToProperty, changedProperties, getControllers } = _Φ;
+const { attributeToProperty, changedProperties, getControllers } = _$LE;
 /**
  * ElementRenderer implementation for LitElements
  */
@@ -17,7 +17,8 @@ export class LitElementRenderer extends ElementRenderer {
         this.element = new (customElements.get(this.tagName))();
     }
     static matchesClass(ctor) {
-        return ctor._$litElement$;
+        // This property needs to remain unminified.
+        return ctor['_$litElement$'];
     }
     connectedCallback() {
         // Call LitElement's `willUpdate` method.

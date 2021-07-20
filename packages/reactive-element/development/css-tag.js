@@ -22,7 +22,8 @@ const styleSheetCache = new Map();
  */
 export class CSSResult {
     constructor(cssText, safeToken) {
-        this._$cssResult$ = true;
+        // This property needs to remain unminified.
+        this['_$cssResult$'] = true;
         if (safeToken !== constructionToken) {
             throw new Error('CSSResult is not constructable. Use `unsafeCSS` or `css` instead.');
         }
@@ -45,7 +46,8 @@ export class CSSResult {
     }
 }
 const textFromCSSResult = (value) => {
-    if (value._$cssResult$ === true) {
+    // This property needs to remain unminified.
+    if (value['_$cssResult$'] === true) {
         return value.cssText;
     }
     else if (typeof value === 'number') {

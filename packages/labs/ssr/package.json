@@ -57,16 +57,16 @@
     "uvu": "^0.5.1"
   },
   "dependencies": {
-    "@lit-labs/ssr-client": "file:../ssr-client",
+    "@lit-labs/ssr-client": "^1.0.0-rc.1",
     "@lit-labs/task": "^1.0.0-rc.1",
     "@webcomponents/template-shadowroot": "^0.1.0",
     "escape-html": "^1.0.3",
     "koa": "^2.7.0",
     "koa-node-resolve": "^1.0.0-pre.5",
     "koa-static": "^5.0.0",
-    "lit": "file:../../lit",
-    "lit-element": "file:../../lit-element",
-    "lit-html": "file:../../lit-html",
+    "lit": "^2.0.0-rc.1",
+    "lit-element": "^3.0.0-rc.1",
+    "lit-html": "^2.0.0-rc.1",
     "node-fetch": "^2.6.0",
     "parse5": "^5.1.0",
     "resolve": "^1.10.1"

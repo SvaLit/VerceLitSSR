@@ -72,7 +72,7 @@ export declare class LitElement extends ReactiveElement {
      * optimizations. See @lit/reactive-element for more information.
      */
     protected static ['finalized']: boolean;
-    static _$litElement$: boolean;
+    static ['_$litElement$']: boolean;
     /**
      * @category rendering
      */
@@ -115,7 +115,7 @@ export declare class LitElement extends ReactiveElement {
  *
  * We currently do not make a mangled rollup build of the lit-ssr code. In order
  * to keep a number of (otherwise private) top-level exports  mangled in the
- * client side code, we export a _Φ object containing those members (or
+ * client side code, we export a _$LE object containing those members (or
  * helper methods for accessing private fields of those members), and then
  * re-export them for use in lit-ssr. This keeps lit-ssr agnostic to whether the
  * client-side code is being used in `dev` mode or `prod` mode.
@@ -125,7 +125,7 @@ export declare class LitElement extends ReactiveElement {
  *
  * @private
  */
-export declare const _Φ: {
+export declare const _$LE: {
     _$attributeToProperty: (el: LitElement, name: string, value: string | null) => void;
     _$changedProperties: (el: LitElement) => any;
     _$controllers: (el: LitElement) => any;

@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 import { css, unsafeCSS, } from '../reactive-element.js';
-import { canTestReactiveElement, generateElementName, getComputedStyleValue, RenderingElement, html, } from './test-helpers.js';
+import { canTestReactiveElement, generateElementName, getComputedStyleValue, RenderingElement, nextFrame, html, } from './test-helpers.js';
 import { assert } from '@esm-bundle/chai';
 const extraGlobals = window;
 (canTestReactiveElement ? suite : suite.skip)('Styling', () => {
@@ -561,6 +561,151 @@ const extraGlobals = window;
             // CSSStyleSheet update should fail, as the styles will be flattened.
             sheet.replaceSync('div { border: 2px solid red; }');
             assert.equal(getComputedStyle(div).getPropertyValue('border-top-width').trim(), '4px', 'CSS should not reflect CSSStyleSheet as it was flattened');
+        });
+    });
+    suite('CSS Custom Properties', () => {
+        let container;
+        setup(() => {
+            container = document.createElement('div');
+            document.body.appendChild(container);
+        });
+        teardown(() => {
+            if (container && container.parentNode) {
+                container.parentNode.removeChild(container);
+            }
+        });
+        test('custom properties render', async () => {
+            const name = generateElementName();
+            const testStyle = (el) => {
+                const div = el.shadowRoot.querySelector('div');
+                assert.equal(getComputedStyleValue(div, 'border-top-width').trim(), '8px');
+            };
+            customElements.define(name, class extends RenderingElement {
+                static get styles() {
+                    return css `
+              :host {
+                --border: 8px solid red;
+              }
+              div {
+                border: var(--border);
+              }
+            `;
+                }
+                render() {
+                    return html `<div>Testing...</div>`;
+                }
+                firstUpdated() {
+                    testStyle(this);
+                }
+            });
+            const el = document.createElement(name);
+            container.appendChild(el);
+            await el.updateComplete;
+            testStyle(el);
+        });
+        test('custom properties flow to nested elements', async () => {
+            customElements.define('x-inner', class extends RenderingElement {
+                static get styles() {
+                    return css `
+              div {
+                border: var(--border);
+              }
+            `;
+                }
+                render() {
+                    return html `<div>Testing...</div>`;
+                }
+            });
+            const name = generateElementName();
+            class E extends RenderingElement {
+                constructor() {
+                    super(...arguments);
+                    this.inner = null;
+                }
+                static get styles() {
+                    return css `
+            x-inner {
+              --border: 8px solid red;
+            }
+          `;
+                }
+                render() {
+                    return html `<x-inner></x-inner>`;
+                }
+                firstUpdated() {
+                    this.inner = this.shadowRoot.querySelector('x-inner');
+                }
+            }
+            customElements.define(name, E);
+            const el = document.createElement(name);
+            container.appendChild(el);
+            // Workaround for Safari 9 Promise timing bugs.
+            (await el.updateComplete) && (await el.inner.updateComplete);
+            await nextFrame();
+            const div = el.inner.shadowRoot.querySelector('div');
+            assert.equal(getComputedStyleValue(div, 'border-top-width').trim(), '8px');
+        });
+        test('elements with custom properties can move between elements', async () => {
+            customElements.define('x-inner1', class extends RenderingElement {
+                static get styles() {
+                    return css `
+              div {
+                border: var(--border);
+              }
+            `;
+                }
+                render() {
+                    return html `<div>Testing...</div>`;
+                }
+            });
+            const name1 = generateElementName();
+            customElements.define(name1, class extends RenderingElement {
+                constructor() {
+                    super(...arguments);
+                    this.inner = null;
+                }
+                static get styles() {
+                    return css `
+              x-inner1 {
+                --border: 2px solid red;
+              }
+            `;
+                }
+                render() {
+                    return html `<x-inner1></x-inner1>`;
+                }
+                firstUpdated() {
+                    this.inner = this.shadowRoot.querySelector('x-inner1');
+                }
+            });
+            const name2 = generateElementName();
+            customElements.define(name2, class extends RenderingElement {
+                static get styles() {
+                    return css `
+              x-inner1 {
+                --border: 8px solid red;
+              }
+            `;
+                }
+                render() {
+                    return html ``;
+                }
+            });
+            const el = document.createElement(name1);
+            const el2 = document.createElement(name2);
+            container.appendChild(el);
+            container.appendChild(el2);
+            // Workaround for Safari 9 Promise timing bugs.
+            await el.updateComplete;
+            await nextFrame();
+            const inner = el.shadowRoot.querySelector('x-inner1');
+            const div = inner.shadowRoot.querySelector('div');
+            assert.equal(getComputedStyleValue(div, 'border-top-width').trim(), '2px');
+            el2.shadowRoot.appendChild(inner);
+            // Workaround for Safari 9 Promise timing bugs.
+            await el.updateComplete;
+            await nextFrame();
+            assert.equal(getComputedStyleValue(div, 'border-top-width').trim(), '8px');
         });
     });
 });

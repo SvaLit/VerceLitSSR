@@ -141,7 +141,8 @@ const setChildrenConnected = (parent, isConnected) => {
         // `_$setChildPartConnected`, which exists `ChildParts` which are also in
         // this list
         // Disconnect Directive (and any nested directives contained within)
-        (_b = (_a = obj)._$setDirectiveConnected) === null || _b === void 0 ? void 0 : _b.call(_a, isConnected, false);
+        // This property needs to remain unminified.
+        (_b = (_a = obj)['_$setDirectiveConnected']) === null || _b === void 0 ? void 0 : _b.call(_a, isConnected, false);
         // Disconnect Part/TemplateInstance
         setChildrenConnected(obj, isConnected);
     }
@@ -287,6 +288,7 @@ export class AsyncDirective extends Directive {
         super._$initialize(part, parent, attributeIndex);
         addDisconnectableToParent(this);
     }
+    // This property needs to remain unminified.
     /**
      * Called from the core code when a directive is going away from a part (in
      * which case `shouldRemoveFromParent` should be true), and from the
@@ -299,7 +301,7 @@ export class AsyncDirective extends Directive {
      *     removed; false when the tree is being disconnected
      * @internal
      */
-    _$setDirectiveConnected(isConnected, isClearingDirective = true) {
+    ['_$setDirectiveConnected'](isConnected, isClearingDirective = true) {
         this._setConnected(isConnected);
         if (isClearingDirective) {
             setChildrenConnected(this, isConnected);

@@ -7,7 +7,7 @@
     "lit": "file:packages/lit",
     "lit-element": "file:packages/lit-element",
     "lit-html": "file:packages/lit-html",
-    "isomorphic-fetch": "^3.0.0"
+    "isomorphic-fetch": "latest"
   },
   "devDependencies": {
     "@webcomponents/template-shadowroot": "latest",

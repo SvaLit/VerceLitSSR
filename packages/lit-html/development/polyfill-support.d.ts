@@ -29,7 +29,7 @@ interface RenderOptions {
 }
 interface ShadyTemplateResult {
     strings: TemplateStringsArray;
-    _$litType$?: string;
+    ['_$litType$']?: string;
 }
 interface Directive {
     __directive?: Directive;

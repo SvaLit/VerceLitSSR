@@ -70,7 +70,12 @@ var ENABLE_SHADYDOM_NOPATCH = true;
         // template. It must be moved to the *end* of the template so it doesn't
         // mess up part indices.
         if (hasScopeCss && extraGlobals.ShadyCSS.nativeShadow) {
-            template.content.appendChild(template.content.querySelector('style'));
+            // If there were styles but the CSS text was empty, ShadyCSS will
+            // eliminate the style altogether, so the style here could be null
+            var style = template.content.querySelector('style');
+            if (style !== null) {
+                template.content.appendChild(style);
+            }
         }
     };
     var scopedTemplateCache = new Map();
@@ -87,16 +92,20 @@ var ENABLE_SHADYDOM_NOPATCH = true;
             if (!extraGlobals.ShadyCSS.nativeShadow) {
                 extraGlobals.ShadyCSS.prepareTemplateDom(element, scope);
             }
-            var scopeCss = cssForScope(scope);
-            // Remove styles and store textContent.
-            var styles = element.content.querySelectorAll('style');
-            // Store the css in this template in the scope css and remove the <style>
-            // from the template _before_ the node-walk captures part indices
-            scopeCss.push.apply(scopeCss, Array.from(styles).map(function (style) {
-                var _a;
-                (_a = style.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(style);
-                return style.textContent;
-            }));
+            // Process styles only if this scope is being prepared. Otherwise,
+            // leave styles as is for back compat with Lit1.
+            if (needsPrepareStyles(scope)) {
+                var scopeCss = cssForScope(scope);
+                // Remove styles and store textContent.
+                var styles = element.content.querySelectorAll('style');
+                // Store the css in this template in the scope css and remove the <style>
+                // from the template _before_ the node-walk captures part indices
+                scopeCss.push.apply(scopeCss, Array.from(styles).map(function (style) {
+                    var _a;
+                    (_a = style.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(style);
+                    return style.textContent;
+                }));
+            }
         }
         return element;
     };
@@ -132,7 +141,8 @@ var ENABLE_SHADYDOM_NOPATCH = true;
             setValue.call(this, value, directiveParent);
             // Get the template for this result or create a dummy one if a result
             // is not being rendered.
-            var template = ((_b = value) === null || _b === void 0 ? void 0 : _b._$litType$)
+            // This property needs to remain unminified.
+            var template = ((_b = value) === null || _b === void 0 ? void 0 : _b['_$litType$'])
                 ? this._$committedValue._$template.el
                 : document.createElement('template');
             prepareStyles(scope, template);

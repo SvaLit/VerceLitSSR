@@ -12,8 +12,8 @@ import { repeat } from '../directives/repeat.js';
 import { AsyncDirective } from '../async-directive.js';
 import { createRef, ref } from '../directives/ref.js';
 // For compiled template tests
-import { _Σ } from '../private-ssr-support.js';
-const { AttributePart } = _Σ;
+import { _$LH } from '../private-ssr-support.js';
+const { AttributePart } = _$LH;
 const ua = window.navigator.userAgent;
 const isIe = ua.indexOf('Trident/') > 0;
 // We don't have direct access to DEV_MODE, but this is a good enough
@@ -1082,7 +1082,8 @@ suite('lit-html', () => {
                 parts: [{ type: 2, index: 0 }],
             };
             assertRender({
-                _$litType$: _$lit_template_1,
+                // This property needs to remain unminified.
+                ['_$litType$']: _$lit_template_1,
                 values: ['A'],
             }, 'A');
         });
@@ -1093,7 +1094,8 @@ suite('lit-html', () => {
                 parts: [{ type: 2, index: 1 }],
             };
             const result = {
-                _$litType$: _$lit_template_1,
+                // This property needs to remain unminified.
+                ['_$litType$']: _$lit_template_1,
                 values: ['A'],
             };
             assertRender(result, '<div>A</div>');
@@ -1113,7 +1115,8 @@ suite('lit-html', () => {
                 ],
             };
             const result = {
-                _$litType$: _$lit_template_1,
+                // This property needs to remain unminified.
+                ['_$litType$']: _$lit_template_1,
                 values: ['A'],
             };
             assertRender(result, '<div foo="A"></div>');
@@ -1126,7 +1129,8 @@ suite('lit-html', () => {
                 parts: [{ type: 6, index: 0 }],
             };
             const result = {
-                _$litType$: _$lit_template_1,
+                // This property needs to remain unminified.
+                ['_$litType$']: _$lit_template_1,
                 values: [ref(r)],
             };
             assertRender(result, '<div></div>');
@@ -1916,10 +1920,7 @@ suite('lit-html', () => {
     //     assert.equal((div as any).foo, 'bar');
     //   });
     // });
-    let securityHooksSuiteFunction = suite;
-    if (!DEV_MODE) {
-        securityHooksSuiteFunction = suite.skip;
-    }
+    const securityHooksSuiteFunction = DEV_MODE ? suite : suite.skip;
     securityHooksSuiteFunction('enahnced security hooks', () => {
         class FakeSanitizedWrapper {
             constructor(sanitizeTo) {
@@ -2023,6 +2024,28 @@ suite('lit-html', () => {
             assert.deepEqual(sanitizerCalls, [
                 { values: ['bad', safe], name: 'foo', type: 'property', nodeName: 'DIV' },
             ]);
+        });
+    });
+    const warningsSuiteFunction = DEV_MODE ? suite : suite.skip;
+    warningsSuiteFunction('warnings', () => {
+        test('warns on octal escape', () => {
+            const warnings = [];
+            const originalWarn = console.warn;
+            console.warn = (...args) => {
+                warnings.push(args);
+                return originalWarn.call(console, ...args);
+            };
+            try {
+                render(html `\2022`, container);
+                assert.fail();
+            }
+            catch (e) {
+                assert.equal(warnings.length, 1);
+                assert.include(warnings[0][0], 'escape');
+            }
+            finally {
+                console.warn = originalWarn;
+            }
         });
     });
     suite('internal', () => {

@@ -202,8 +202,8 @@
         "affectsGlobalScope": true
       },
       "./src/css-tag.ts": {
-        "version": "8f83241e924b56a61547cdfa5dab99f968ccda4c0faedfb33144ee8dc89e1bfb",
-        "signature": "e093b40a30b576e197d0f652c775cef453a37427918e2f096cd87b8bed4f38bb",
+        "version": "7aae4b6ac01dcf53bb6ad15b79ead8290617282bc3240a145f272439ff90bd77",
+        "signature": "0c8a56610b08f55e29ffb466cd27626ad6dbe822312a398026e82270c63088e3",
         "affectsGlobalScope": false
       },
       "./src/reactive-controller.ts": {
@@ -287,7 +287,7 @@
         "affectsGlobalScope": false
       },
       "./src/test/test-helpers.ts": {
-        "version": "cee9e405c028de712363220a9d77203f9ecc097503a4d247dbccaed2e6085a72",
+        "version": "d027978069b1484091c33847705b71323273590c5de156f79142cfb4b1c287e5",
         "signature": "5cd94017671956ac364877dd4a1dad046ceac42ee815da5b86f24e3fb2cc74cd",
         "affectsGlobalScope": false
       },
@@ -302,7 +302,7 @@
         "affectsGlobalScope": false
       },
       "./src/test/reactive-element_styling_test.ts": {
-        "version": "e58570406ed20f206c7f23d80eb83da7e68f3eb7006e7db27b34265b708493b3",
+        "version": "77a3aafc88e9792618cf40eeff0e0a3cd25160ce83090723c3da8ef786e8baba",
         "signature": "302471d934dc96a256c4991367b0e9607e8e20760f653847c878b5e52cc89a24",
         "affectsGlobalScope": false
       },

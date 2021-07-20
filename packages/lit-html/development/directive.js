@@ -16,7 +16,8 @@ export const PartType = {
  * function has the same parameters as the directive's render() method.
  */
 export const directive = (c) => (...values) => ({
-    _$litDirective$: c,
+    // This property needs to remain unminified.
+    ['_$litDirective$']: c,
     values,
 });
 /**

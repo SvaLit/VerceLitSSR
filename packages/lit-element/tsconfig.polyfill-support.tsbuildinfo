@@ -212,8 +212,8 @@
         "affectsGlobalScope": true
       },
       "../lit-html/polyfill-support.d.ts": {
-        "version": "60f677e393c8c60be783696ff1396492fc48e4860c86f91e51dd94534f6ba1f9",
-        "signature": "60f677e393c8c60be783696ff1396492fc48e4860c86f91e51dd94534f6ba1f9",
+        "version": "66620d9ba82e192db06d9e4cd4c3ac2afecdd43e67455fc7dc718dd70ada30a0",
+        "signature": "66620d9ba82e192db06d9e4cd4c3ac2afecdd43e67455fc7dc718dd70ada30a0",
         "affectsGlobalScope": true
       },
       "./src/polyfill-support.ts": {

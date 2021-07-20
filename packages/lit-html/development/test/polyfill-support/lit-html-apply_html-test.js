@@ -163,5 +163,17 @@ suite('@apply', () => {
         assert.equal(userInProducerStyle2.getPropertyValue('padding-top').trim(), '10px');
         document.body.removeChild(applyProducer);
     });
+    test('empty style', function () {
+        var _a;
+        const container = document.createElement('empty-style');
+        document.body.appendChild(container);
+        const result = htmlWithApply `
+      <style></style>
+      <div>Testing...</div>
+    `;
+        renderShadowRoot(result, container);
+        (_a = extraGlobals.ShadyCSS) === null || _a === void 0 ? void 0 : _a.styleElement(container);
+        document.body.removeChild(container);
+    });
 });
 //# sourceMappingURL=lit-html-apply_html-test.js.map

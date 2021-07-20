@@ -2,8 +2,8 @@
 import { nothing, noChange } from 'lit';
 import { PartType } from 'lit/directive.js';
 import { isTemplateResult } from 'lit/directive-helpers.js';
-import { _Σ } from 'lit-html/private-ssr-support.js';
-const { getTemplateHtml, marker, markerMatch, boundAttributeSuffix, overrideDirectiveResolve, getAttributePartCommittedValue, resolveDirective, AttributePart, PropertyPart, BooleanAttributePart, EventPart, } = _Σ;
+import { _$LH } from 'lit-html/private-ssr-support.js';
+const { getTemplateHtml, marker, markerMatch, boundAttributeSuffix, overrideDirectiveResolve, getAttributePartCommittedValue, resolveDirective, AttributePart, PropertyPart, BooleanAttributePart, EventPart, } = _$LH;
 import { digestForTemplateResult } from 'lit/experimental-hydrate.js';
 import { getElementRenderer, } from './element-renderer.js';
 import { createRequire } from 'module';
@@ -21,7 +21,8 @@ const patchedDirectiveCache = new Map();
  * with a subclass that calls `render` rather than `update`
  */
 const patchIfDirective = (value) => {
-    const directiveCtor = value?._$litDirective$;
+    // This property needs to remain unminified.
+    const directiveCtor = value?.['_$litDirective$'];
     if (directiveCtor !== undefined) {
         let patchedCtor = patchedDirectiveCache.get(directiveCtor);
         if (patchedCtor === undefined) {
@@ -32,7 +33,8 @@ const patchIfDirective = (value) => {
             });
             patchedDirectiveCache.set(directiveCtor, patchedCtor);
         }
-        value._$litDirective$ = patchedCtor;
+        // This property needs to remain unminified.
+        value['_$litDirective$'] = patchedCtor;
     }
     return value;
 };
@@ -114,7 +116,8 @@ const getTemplateOpcodes = (result) => {
     if (template !== undefined) {
         return template;
     }
-    const [html, attrNames] = getTemplateHtml(result.strings, result._$litType$);
+    // The property '_$litType$' needs to remain unminified.
+    const [html, attrNames] = getTemplateHtml(result.strings, result['_$litType$']);
     /**
      * The html string is parsed into a parse5 AST with source code information
      * on; this lets us skip over certain ast nodes by string character position

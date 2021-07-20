@@ -57,14 +57,14 @@ declare const COMMENT_PART = 7;
  * The return type of the template tag functions.
  */
 export declare type TemplateResult<T extends ResultType = ResultType> = {
-    _$litType$: T;
+    ['_$litType$']: T;
     strings: TemplateStringsArray;
     values: unknown[];
 };
 export declare type HTMLTemplateResult = TemplateResult<typeof HTML_RESULT>;
 export declare type SVGTemplateResult = TemplateResult<typeof SVG_RESULT>;
 export interface CompiledTemplateResult {
-    _$litType$: CompiledTemplate;
+    ['_$litType$']: CompiledTemplate;
     values: unknown[];
 }
 export interface CompiledTemplate extends Omit<Template, 'el'> {
@@ -133,7 +133,8 @@ declare class Template {
     el: HTMLTemplateElement;
     /** @internal */
     parts: Array<TemplatePart>;
-    constructor({ strings, _$litType$: type }: TemplateResult, options?: RenderOptions);
+    constructor({ strings, ['_$litType$']: type }: TemplateResult, options?: RenderOptions);
+    /** @nocollapse */
     static createElement(html: TrustedHTML, _options?: RenderOptions): HTMLTemplateElement;
 }
 export interface Disconnectable {
@@ -284,8 +285,6 @@ declare class AttributePart {
     /** @internal */
     _$disconnectableChildren?: Set<Disconnectable>;
     protected _sanitizer: ValueSanitizer | undefined;
-    /** @internal */
-    _setDirectiveConnected?: (directive: Directive | undefined, isConnected: boolean, removeFromParent?: boolean) => void;
     get tagName(): string;
     constructor(element: HTMLElement, name: string, strings: ReadonlyArray<string>, parent: Disconnectable | undefined, options: RenderOptions | undefined);
     /**
@@ -355,8 +354,6 @@ declare class ElementPart {
     _$parent: Disconnectable | undefined;
     /** @internal */
     _$disconnectableChildren?: Set<Disconnectable>;
-    /** @internal */
-    _setDirectiveConnected?: (directive: Directive | undefined, isConnected: boolean, removeFromParent?: boolean) => void;
     options: RenderOptions | undefined;
     constructor(element: Element, parent: Disconnectable, options: RenderOptions | undefined);
     _$setValue(value: unknown): void;
@@ -369,7 +366,7 @@ declare class ElementPart {
  *
  * We currently do not make a mangled rollup build of the lit-ssr code. In order
  * to keep a number of (otherwise private) top-level exports  mangled in the
- * client side code, we export a _Σ object containing those members (or
+ * client side code, we export a _$LH object containing those members (or
  * helper methods for accessing private fields of those members), and then
  * re-export them for use in lit-ssr. This keeps lit-ssr agnostic to whether the
  * client-side code is being used in `dev` mode or `prod` mode.
@@ -379,7 +376,7 @@ declare class ElementPart {
  *
  * @private
  */
-export declare const _Σ: {
+export declare const _$LH: {
     _boundAttributeSuffix: string;
     _marker: string;
     _markerMatch: string;

@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 var _a, _b;
-import { _Σ } from './lit-html.js';
-const { _ChildPart: ChildPart } = _Σ;
+import { _$LH } from './lit-html.js';
+const { _ChildPart: ChildPart } = _$LH;
 const ENABLE_SHADYDOM_NOPATCH = true;
 const extraGlobals = window;
 const wrap = ENABLE_SHADYDOM_NOPATCH &&
@@ -29,17 +29,22 @@ export const TemplateResultType = {
 export const isTemplateResult = (value, type) => {
     var _a, _b;
     return type === undefined
-        ? ((_a = value) === null || _a === void 0 ? void 0 : _a._$litType$) !== undefined
-        : ((_b = value) === null || _b === void 0 ? void 0 : _b._$litType$) === type;
+        ? // This property needs to remain unminified.
+            ((_a = value) === null || _a === void 0 ? void 0 : _a['_$litType$']) !== undefined
+        : ((_b = value) === null || _b === void 0 ? void 0 : _b['_$litType$']) === type;
 };
 /**
  * Tests if a value is a DirectiveResult.
  */
-export const isDirectiveResult = (value) => { var _a; return ((_a = value) === null || _a === void 0 ? void 0 : _a._$litDirective$) !== undefined; };
+export const isDirectiveResult = (value) => { var _a; 
+// This property needs to remain unminified.
+return ((_a = value) === null || _a === void 0 ? void 0 : _a['_$litDirective$']) !== undefined; };
 /**
  * Retrieves the Directive class for a DirectiveResult
  */
-export const getDirectiveClass = (value) => { var _a; return (_a = value) === null || _a === void 0 ? void 0 : _a._$litDirective$; };
+export const getDirectiveClass = (value) => { var _a; 
+// This property needs to remain unminified.
+return (_a = value) === null || _a === void 0 ? void 0 : _a['_$litDirective$']; };
 /**
  * Tests whether a part has only a single-expression with no strings to
  * interpolate between.

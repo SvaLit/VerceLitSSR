@@ -28,7 +28,7 @@ export declare type CSSResultGroup = CSSResultOrNative | CSSResultArray;
  * `css` tag and `unsafeCSS()`, CSSResult cannot be constructed directly.
  */
 export declare class CSSResult {
-    _$cssResult$: boolean;
+    ['_$cssResult$']: boolean;
     readonly cssText: string;
     private constructor();
     get styleSheet(): CSSStyleSheet | undefined;

@@ -160,11 +160,21 @@ const COMMENT_PART = 7;
  * Generates a template literal tag function that returns a TemplateResult with
  * the given result type.
  */
-const tag = (_$litType$) => (strings, ...values) => ({
-    _$litType$,
-    strings,
-    values,
-});
+const tag = (type) => (strings, ...values) => {
+    // Warn against templates octal escape sequences
+    // We do this here rather than in render so that the warning is closer to the
+    // template definition.
+    if (DEV_MODE && strings.some((s) => s === undefined)) {
+        console.warn('Some template strings are undefined.\n' +
+            'This is probably caused by illegal octal escape sequences.');
+    }
+    return {
+        // This property needs to remain unminified.
+        ['_$litType$']: type,
+        strings,
+        values,
+    };
+};
 /**
  * Interprets a template literal as an HTML template that can efficiently
  * render to and update a container.
@@ -201,8 +211,9 @@ const templateCache = new WeakMap();
 export const render = (value, container, options) => {
     var _a, _b, _c;
     const partOwnerNode = (_a = options === null || options === void 0 ? void 0 : options.renderBefore) !== null && _a !== void 0 ? _a : container;
+    // This property needs to remain unminified.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let part = partOwnerNode._$litPart$;
+    let part = partOwnerNode['_$litPart$'];
     if (part === undefined) {
         // Internal modification: don't clear container to match lit-html 2.0
         if (INTERNAL &&
@@ -211,8 +222,9 @@ export const render = (value, container, options) => {
             container.childNodes.forEach((c) => c.remove());
         }
         const endNode = (_c = options === null || options === void 0 ? void 0 : options.renderBefore) !== null && _c !== void 0 ? _c : null;
+        // This property needs to remain unminified.
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        partOwnerNode._$litPart$ = part = new ChildPart(container.insertBefore(createMarker(), endNode), endNode, undefined, options);
+        partOwnerNode['_$litPart$'] = part = new ChildPart(container.insertBefore(createMarker(), endNode), endNode, undefined, options);
     }
     part._$setValue(value);
     return part;
@@ -385,7 +397,9 @@ const getTemplateHtml = (strings, type) => {
     ];
 };
 class Template {
-    constructor({ strings, _$litType$: type }, options) {
+    constructor(
+    // This property needs to remain unminified.
+    { strings, ['_$litType$']: type }, options) {
         /** @internal */
         this.parts = [];
         let node;
@@ -509,6 +523,7 @@ class Template {
         }
     }
     // Overridden via `litHtmlPlatformSupport` to provide platform support.
+    /** @nocollapse */
     static createElement(html, _options) {
         const el = d.createElement('template');
         el.innerHTML = html;
@@ -528,9 +543,11 @@ function resolveDirective(part, value, parent = part, attributeIndex) {
         : parent.__directive;
     const nextDirectiveConstructor = isPrimitive(value)
         ? undefined
-        : value._$litDirective$;
+        : // This property needs to remain unminified.
+            value['_$litDirective$'];
     if ((currentDirective === null || currentDirective === void 0 ? void 0 : currentDirective.constructor) !== nextDirectiveConstructor) {
-        (_b = currentDirective === null || currentDirective === void 0 ? void 0 : currentDirective._$setDirectiveConnected) === null || _b === void 0 ? void 0 : _b.call(currentDirective, false);
+        // This property needs to remain unminified.
+        (_b = currentDirective === null || currentDirective === void 0 ? void 0 : currentDirective['_$setDirectiveConnected']) === null || _b === void 0 ? void 0 : _b.call(currentDirective, false);
         if (nextDirectiveConstructor === undefined) {
             currentDirective = undefined;
         }
@@ -691,8 +708,9 @@ class ChildPart {
             else if (value !== this._$committedValue && value !== noChange) {
                 this._commitText(value);
             }
+            // This property needs to remain unminified.
         }
-        else if (value._$litType$ !== undefined) {
+        else if (value['_$litType$'] !== undefined) {
             this._commitTemplateResult(value);
         }
         else if (value.nodeType !== undefined) {
@@ -765,16 +783,17 @@ class ChildPart {
     }
     _commitTemplateResult(result) {
         var _a;
-        const { values, _$litType$ } = result;
+        // This property needs to remain unminified.
+        const { values, ['_$litType$']: type } = result;
         // If $litType$ is a number, result is a plain TemplateResult and we get
         // the template from the template cache. If not, result is a
         // CompiledTemplateResult and _$litType$ is a CompiledTemplate and we need
         // to create the <template> element the first time we see it.
-        const template = typeof _$litType$ === 'number'
+        const template = typeof type === 'number'
             ? this._$getTemplate(result)
-            : (_$litType$.el === undefined &&
-                (_$litType$.el = Template.createElement(_$litType$.h, this.options)),
-                _$litType$);
+            : (type.el === undefined &&
+                (type.el = Template.createElement(type.h, this.options)),
+                type);
         if (((_a = this._$committedValue) === null || _a === void 0 ? void 0 : _a._$template) === template) {
             this._$committedValue._update(values);
         }
@@ -864,8 +883,6 @@ class AttributePart {
         this._$committedValue = nothing;
         /** @internal */
         this._$disconnectableChildren = undefined;
-        /** @internal */
-        this._setDirectiveConnected = undefined;
         this.element = element;
         this.name = name;
         this._$parent = parent;
@@ -1053,8 +1070,6 @@ class ElementPart {
         this.type = ELEMENT_PART;
         /** @internal */
         this._$disconnectableChildren = undefined;
-        /** @internal */
-        this._setDirectiveConnected = undefined;
         this._$parent = parent;
         this.options = options;
     }
@@ -1070,7 +1085,7 @@ class ElementPart {
  *
  * We currently do not make a mangled rollup build of the lit-ssr code. In order
  * to keep a number of (otherwise private) top-level exports  mangled in the
- * client side code, we export a _Σ object containing those members (or
+ * client side code, we export a _$LH object containing those members (or
  * helper methods for accessing private fields of those members), and then
  * re-export them for use in lit-ssr. This keeps lit-ssr agnostic to whether the
  * client-side code is being used in `dev` mode or `prod` mode.
@@ -1080,7 +1095,7 @@ class ElementPart {
  *
  * @private
  */
-export const _Σ = {
+export const _$LH = {
     // Used in lit-ssr
     _boundAttributeSuffix: boundAttributeSuffix,
     _marker: marker,

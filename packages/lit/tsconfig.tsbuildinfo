@@ -212,18 +212,18 @@
         "affectsGlobalScope": true
       },
       "../lit-html/directive.d.ts": {
-        "version": "b514d6ab7ce1cb2852ab9340e37bac16f08de1f82f6c32ef04116a58479f18d5",
-        "signature": "b514d6ab7ce1cb2852ab9340e37bac16f08de1f82f6c32ef04116a58479f18d5",
+        "version": "0df7872b43d301562397b928aa8111f1bb6509d9a0ab1a8506a203f2af996634",
+        "signature": "0df7872b43d301562397b928aa8111f1bb6509d9a0ab1a8506a203f2af996634",
         "affectsGlobalScope": false
       },
       "../lit-html/lit-html.d.ts": {
-        "version": "0424606203968058b942f328114614617021bcd5aaf6bd17b5dfc1edd5d1957f",
-        "signature": "0424606203968058b942f328114614617021bcd5aaf6bd17b5dfc1edd5d1957f",
+        "version": "56ff09e936e383522a605022ff1daa3b365cd191053058e0774f4d4b37802da8",
+        "signature": "56ff09e936e383522a605022ff1daa3b365cd191053058e0774f4d4b37802da8",
         "affectsGlobalScope": false
       },
       "../lit-html/async-directive.d.ts": {
-        "version": "aa09025b6aa8928da4228e55b658e15d0be1440a42962d8a2f285f13827f6dc2",
-        "signature": "aa09025b6aa8928da4228e55b658e15d0be1440a42962d8a2f285f13827f6dc2",
+        "version": "1d321d93dfebd6dee395526527c7b5c1a09ce808888dbb6f0f334513b706caa3",
+        "signature": "1d321d93dfebd6dee395526527c7b5c1a09ce808888dbb6f0f334513b706caa3",
         "affectsGlobalScope": false
       },
       "./src/async-directive.ts": {
@@ -232,8 +232,8 @@
         "affectsGlobalScope": false
       },
       "../reactive-element/css-tag.d.ts": {
-        "version": "e093b40a30b576e197d0f652c775cef453a37427918e2f096cd87b8bed4f38bb",
-        "signature": "e093b40a30b576e197d0f652c775cef453a37427918e2f096cd87b8bed4f38bb",
+        "version": "0c8a56610b08f55e29ffb466cd27626ad6dbe822312a398026e82270c63088e3",
+        "signature": "0c8a56610b08f55e29ffb466cd27626ad6dbe822312a398026e82270c63088e3",
         "affectsGlobalScope": false
       },
       "../reactive-element/reactive-controller.d.ts": {
@@ -337,8 +337,8 @@
         "affectsGlobalScope": false
       },
       "../lit-element/lit-element.d.ts": {
-        "version": "f1264887b2ea44a9c7cac81c33be95107f8ef8a3cee04ee19082e4aea1ae42d6",
-        "signature": "f1264887b2ea44a9c7cac81c33be95107f8ef8a3cee04ee19082e4aea1ae42d6",
+        "version": "e4c36d209e92ed31eef887caa07588293701526fff614f080903c044b581116c",
+        "signature": "e4c36d209e92ed31eef887caa07588293701526fff614f080903c044b581116c",
         "affectsGlobalScope": true
       },
       "./src/index.ts": {
