@@ -1,17 +1,12 @@
 {
   "type": "module",
   "dependencies": {
-    "@lit-labs/ssr": "file:packages/labs/ssr",
-    "@lit-labs/ssr-client": "file:packages/labs/ssr-client",
-    "@lit/reactive-element": "file:packages/reactive-element",
-    "lit": "file:packages/lit",
-    "lit-element": "file:packages/lit-element",
-    "lit-html": "file:packages/lit-html",
+    "@lit-labs/ssr": "npm:@lit-async/ssr@latest",
+    "@lit-labs/ssr-client": "npm:@lit-async/ssr-client@latest",
     "isomorphic-fetch": "latest"
   },
   "devDependencies": {
-    "@webcomponents/template-shadowroot": "latest",
-    "internal-scripts": "file:packages/internal-scripts"
+    "@webcomponents/template-shadowroot": "latest"
   },
   "imports": {
     "#isomorphic-until": "./packages/isomorphic-until/index.mjs"
