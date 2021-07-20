@@ -48,9 +48,9 @@
     "internal-scripts": "^1.0.0"
   },
   "dependencies": {
-    "lit": "^2.0.0-rc.1",
-    "lit-html": "^2.0.0-rc.1",
-    "@lit/reactive-element": "^1.0.0-rc.1"
+    "lit": "file:../../lit",
+    "lit-html": "file:../../lit-html",
+    "@lit/reactive-element": "file:../../reactive-element"
   },
   "publishConfig": {
     "access": "public"
