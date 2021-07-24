@@ -4,7 +4,8 @@
     "@lit-labs/ssr": "npm:@lit-async/ssr@latest",
     "@lit-labs/ssr-client": "npm:@lit-async/ssr-client@latest",
     "lit": "npm:@lit-async/lit@latest",
-    "realm": "latest"
+    "realm": "latest",
+    "serialize-error": "latest"
   },
   "devDependencies": {
     "@webcomponents/template-shadowroot": "latest"
