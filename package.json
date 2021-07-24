@@ -3,9 +3,8 @@
   "dependencies": {
     "@lit-labs/ssr": "npm:@lit-async/ssr@latest",
     "@lit-labs/ssr-client": "npm:@lit-async/ssr-client@latest",
-    "isomorphic-fetch": "latest",
     "lit": "npm:@lit-async/lit@latest",
-    "realm": "^10.6.0"
+    "realm": "latest"
   },
   "devDependencies": {
     "@webcomponents/template-shadowroot": "latest"
