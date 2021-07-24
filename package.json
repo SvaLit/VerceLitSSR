@@ -1,10 +1,11 @@
 {
   "type": "module",
   "dependencies": {
-    "lit": "npm:@lit-async/lit@latest",
     "@lit-labs/ssr": "npm:@lit-async/ssr@latest",
     "@lit-labs/ssr-client": "npm:@lit-async/ssr-client@latest",
-    "isomorphic-fetch": "latest"
+    "isomorphic-fetch": "latest",
+    "lit": "npm:@lit-async/lit@latest",
+    "realm": "^10.6.0"
   },
   "devDependencies": {
     "@webcomponents/template-shadowroot": "latest"
