@@ -1,4 +1,4 @@
-import Realm from "realm";
+import * as Realm from "realm-web";
 import {LitElement, html} from "lit";
 import {until} from '#isomorphic-until';
 
