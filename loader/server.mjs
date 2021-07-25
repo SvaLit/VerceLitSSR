@@ -6,8 +6,6 @@ import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import head from './head.mjs';
 import "../components/app.mjs";
 
-process.chdir('/tmp');
-
 export default async (req, res) => {
     try {
         return readableFrom(render(html`
