@@ -6,7 +6,6 @@
     "isomorphic-fetch": "https://cdn.skypack.dev/isomorphic-fetch",
     "isomorphic-fetch/": "https://cdn.skypack.dev/isomorphic-fetch/",
     "#isomorphic-until": "https://cdn.skypack.dev/lit/directives/until.js",
-    "realm-web": "https://cdn.skypack.dev/realm-web",
-    "realm": "/packages/realm/index.mjs"
+    "realm-web": "https://cdn.skypack.dev/realm-web"
   }
 }
