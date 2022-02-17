@@ -1,9 +1,9 @@
 {
   "type": "module",
   "dependencies": {
-    "lit": "npm:@lit-async/lit@latest",
-    "@lit-labs/ssr": "npm:@lit-async/ssr@latest",
-    "@lit-labs/ssr-client": "npm:@lit-async/ssr-client@latest",
+    "lit": "npm:@svalit/lit@latest",
+    "@lit-labs/ssr": "npm:@svalit/ssr@latest",
+    "@lit-labs/ssr-client": "npm:@svalit/ssr-client@latest",
     "isomorphic-fetch": "latest"
   },
   "devDependencies": {
