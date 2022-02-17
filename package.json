@@ -8,8 +8,5 @@
   },
   "devDependencies": {
     "@webcomponents/template-shadowroot": "latest"
-  },
-  "imports": {
-    "#isomorphic-until": "./packages/isomorphic-until/index.mjs"
   }
 }

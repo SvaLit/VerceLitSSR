@@ -6,9 +6,10 @@ import head from './head.mjs';
 import "../components/app.mjs";
 
 export default async (req, res) => {
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
     return readableFrom(render(html`
         <!DOCTYPE html>
-        <html lang="ru">${unsafeHTML((await head()).toString())}
+        <html lang="ru">${unsafeHTML(head())}
         <body>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=globalThis" async noshim></script>
         <script src="https://unpkg.com/es-module-shims@0.12.1/dist/es-module-shims.min.js" async noshim></script>
