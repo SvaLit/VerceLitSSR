@@ -6,7 +6,12 @@
     },
     {
       "src": "/index.*",
-      "use": "@vercel/node@canary"
+      "use": "@vercel/node@canary",
+      "config": {
+        "includeFiles": [
+          "loader/**"
+        ]
+      }
     }
   ],
   "rewrites": [
